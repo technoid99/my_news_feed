@@ -45,6 +45,7 @@ def build_index_html(articles, feeds):
   th {{ background-color: #f2f2f2; cursor: pointer; }}
   .missing-date td:first-child {{ color: gray; }}
   #articleCount {{ margin: 10px 0; font-weight: bold; }}
+  @keyframes fadeInModal {{ from {{ opacity: 0; transform: translate(-50%, -55%); }} to {{ opacity: 1; transform: translate(-50%, -50%); }}}}
 </style>
 </head>
 <body>
@@ -103,10 +104,16 @@ def build_index_html(articles, feeds):
 </table>
 
 <!-- About Modal -->
-<div id="aboutModal" style="display:none; position:fixed; top:20%; left:30%; width:40%; background:white; border:1px solid #ccc; padding:20px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); border-radius:8px;">
-  <h3>About This Site</h3>
-  <p>This website displays the latest articles from selected RSS feeds. You can filter by source, time, and keyword search. It is automatically updated daily.</p>
-  <button onclick="document.getElementById('aboutModal').style.display='none'">Close</button>
+<div id="aboutModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:1000;">
+
+  <div style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); background:white; padding:30px; width:90%; max-width:500px; border-radius:10px; box-shadow:0 6px 20px rgba(0,0,0,0.3); animation: fadeInModal 0.3s ease;">
+    <h2 style="margin-top:0;">About This Site</h2>
+    <p style="margin:15px 0;">This website displays the latest articles from selected RSS feeds. You can filter by source, time, and keyword search. It is automatically updated daily.</p>
+    <div style="text-align:right;">
+      <button style="padding:8px 16px; background:#007BFF; color:white; border:none; border-radius:5px; cursor:pointer;" onclick="document.getElementById('aboutModal').style.display='none'">Close</button>
+    </div>
+  </div>
+
 </div>
 
 <script>
