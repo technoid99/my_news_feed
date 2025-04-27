@@ -37,6 +37,3 @@ Desktop.ini
 .eggs/
 build/
 dist/
-
-# Project-specific:
-index.html
