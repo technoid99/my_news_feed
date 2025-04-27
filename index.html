@@ -24,6 +24,8 @@
   .missing-date td:first-child { color: gray; }
   #articleCount { margin: 10px 0; font-weight: bold; }
   @keyframes fadeInModal { from { opacity: 0; transform: translate(-50%, -55%); } to { opacity: 1; transform: translate(-50%, -50%); }}
+  .table-wrapper { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; /* smooth scrolling on iOS. Makes the article table auto-scroll horizontally on small screens rather than breaking layout */ }
+
 </style>
 </head>
 <body>
@@ -31,7 +33,7 @@
 <div class="header-bar">
   <div>
     <h1>My News Feed</h1>
-    <div class="generated-time">Page generated on 27 Apr 2025, 15:10 UTC</div>
+    <div class="generated-time">Page generated on 27 Apr 2025, 15:13 UTC</div>
   </div>
   <div class="header-links">
     <a href="config.html" target="_blank">Config</a>
@@ -68,6 +70,7 @@
 
 <div id="articleCount"></div>
 
+<div class="table-wrapper">
 <table id="newsTable">
 <thead>
 <tr>
@@ -125,14 +128,14 @@
             <td>Fri, 20 Dec 2024 08:00:00 GMT</td>
             <td>GNews 總統罷免條件</td>
             <td><a href="https://news.google.com/rss/articles/CBMiU0FVX3lxTE1WcC1UV2NfbTRuQVZPNkF3NkhSQUFiTEZsMFZZQWxHYW5QYWtsSEU3RXE0VGhkSlpTU0dnTlZ3NzNDTG9rYUUwT0F6YWppRFhHaEVR0gFYQVVfeXFMT0hoSUFramF0LVp1RGFKYWg3bnR1dzRhQU9IWnYtZEVpMzBJeW42QmhjU0pLV2NTTFFnWjlZeHpCRXRkWVhBTExLeWFsT3Zzb3hVd0JROW4tcw?oc=5" target="_blank">選罷法三讀 罷免連署需附身分證影本、偽造假冒最高罰百萬 - 聯合新聞網</a></td>
-        </tr><tr class="" data-source="DPwlTrZS19VcFhcDRstR12Kn7tgs0J2bJSypoWC3goI" data-date="Tue, 18 Feb 2025 08:00:00 GMT" data-title="藍白聯手否決覆議案總統依法公布修正選罷法| 政治 - 中央社 CNA">
-            <td>Tue, 18 Feb 2025 08:00:00 GMT</td>
-            <td>GNews 總統罷免條件</td>
-            <td><a href="https://news.google.com/rss/articles/CBMiX0FVX3lxTE01aFF5d3hMU3hHQU5NaHpoR0FHTTBPUTNOaWJNREt1Zl9lVk04LXJwdlFnVkZ3SEV2MWVIc2Z2d2lFb0FFUGtybEtXRnpYTGVfOUFncDYyeWNSSGY0QUtr?oc=5" target="_blank">藍白聯手否決覆議案總統依法公布修正選罷法| 政治 - 中央社 CNA</a></td>
         </tr><tr class="" data-source="DPwlTrZS19VcFhcDRstR12Kn7tgs0J2bJSypoWC3goI" data-date="Thu, 04 Jul 2024 07:00:00 GMT" data-title="觀點投書：該討論的是降低罷免總統門檻！ - 風傳媒">
             <td>Thu, 04 Jul 2024 07:00:00 GMT</td>
             <td>GNews 總統罷免條件</td>
             <td><a href="https://news.google.com/rss/articles/CBMiTEFVX3lxTE80ZVRPQ0JITk84NDQwNXFEXzZYOEFOazFrckJ4RF9DaXNUanladmVvRU1mY3g2UjhEeDg4dEhYZ25IWDc5TEp5SjV1eHM?oc=5" target="_blank">觀點投書：該討論的是降低罷免總統門檻！ - 風傳媒</a></td>
+        </tr><tr class="" data-source="DPwlTrZS19VcFhcDRstR12Kn7tgs0J2bJSypoWC3goI" data-date="Tue, 18 Feb 2025 08:00:00 GMT" data-title="藍白聯手否決覆議案總統依法公布修正選罷法| 政治 - 中央社 CNA">
+            <td>Tue, 18 Feb 2025 08:00:00 GMT</td>
+            <td>GNews 總統罷免條件</td>
+            <td><a href="https://news.google.com/rss/articles/CBMiX0FVX3lxTE01aFF5d3hMU3hHQU5NaHpoR0FHTTBPUTNOaWJNREt1Zl9lVk04LXJwdlFnVkZ3SEV2MWVIc2Z2d2lFb0FFUGtybEtXRnpYTGVfOUFncDYyeWNSSGY0QUtr?oc=5" target="_blank">藍白聯手否決覆議案總統依法公布修正選罷法| 政治 - 中央社 CNA</a></td>
         </tr><tr class="" data-source="DPwlTrZS19VcFhcDRstR12Kn7tgs0J2bJSypoWC3goI" data-date="Sun, 14 Jul 2024 07:00:00 GMT" data-title="談選罷法爭議（上）：美國、英國、日本的罷免制度，和台灣有什麼不同？ - TNL The News Lens 關鍵評論網">
             <td>Sun, 14 Jul 2024 07:00:00 GMT</td>
             <td>GNews 總統罷免條件</td>
@@ -145,10 +148,6 @@
             <td>Sun, 27 Apr 2025 06:02:31 GMT</td>
             <td>GNews 總統罷免條件</td>
             <td><a href="https://news.google.com/rss/articles/CBMi0wJBVV95cUxNOGhaRlpDSHlydGJxaGJ5cHEzZXdkZ1JzdVh5Q1FiQWplUGpQQ3J1bGZUNExuUXNkZFF2QzFWbU9RT3Rpd05lQ3J6SjFlVnBOSHd4Rlhoemk0VXl3a09aX2Ruc1J5cEJBTGtrX3VVTjRNQkQzbWdaTkhiRXJ1VWJaYm9RdFlTOU5pNmhxRHJFYXM1LTFPTndKMTVfRlV4Wl9nZzIyRDdYZFhiMUtoZHhJUE1xLUFmMHZiSUJUS0lkWW4yNks3eS1YWk9jeU1sN1ozWTRnZ3dXVTRNQnhHU1lRdGQ3ZmctclFMZ1dtbHNQaDJwS1A2aUlzY3oxdmNqdVpUamJCX0pHVFBtSEM1WUgzX3MyZlJ2bldCMjdpLXFnV004VnZSR2V0WG42Sk1GVy1CZ0tWTDl4ZmlFdkhQYTRYRktaM3Rua0VQRUNyVlB1UC1nSW8?oc=5" target="_blank">朱立倫喊罷免賴總統 張麗善呼應：賴清德不是「仁君」 - 奇摩新聞</a></td>
-        </tr><tr class="" data-source="DPwlTrZS19VcFhcDRstR12Kn7tgs0J2bJSypoWC3goI" data-date="Fri, 28 Jun 2024 07:00:00 GMT" data-title="藍啟動《選罷法》修法提高罷免門檻 柯文哲反對：但連署程序應更嚴謹 - rwnews.tw">
-            <td>Fri, 28 Jun 2024 07:00:00 GMT</td>
-            <td>GNews 總統罷免條件</td>
-            <td><a href="https://news.google.com/rss/articles/CBMiUkFVX3lxTFBSVDFvRlZIRDhaTGs4WlF5eWxZNk1Hajd1T2FDVjhmWWhDYmRwMEtGS0FHRF9KMGw1aXBySHdtdll4SzVRSHQ0YW1QTmlyZmVvbXc?oc=5" target="_blank">藍啟動《選罷法》修法提高罷免門檻 柯文哲反對：但連署程序應更嚴謹 - rwnews.tw</a></td>
         </tr><tr class="" data-source="DPwlTrZS19VcFhcDRstR12Kn7tgs0J2bJSypoWC3goI" data-date="Sat, 26 Apr 2025 13:39:15 GMT" data-title="凱道「戰獨裁」現場喊湧入25萬人 朱立倫高呼520後罷免賴清德總統 - 奇摩新聞">
             <td>Sat, 26 Apr 2025 13:39:15 GMT</td>
             <td>GNews 總統罷免條件</td>
@@ -165,6 +164,10 @@
             <td>Mon, 23 Dec 2024 08:00:00 GMT</td>
             <td>GNews 總統罷免條件</td>
             <td><a href="https://news.google.com/rss/articles/CBMiugNBVV95cUxNb0lzYkRiQkp0Q1YtRjhQaW9Zc0tGb2JudS1lb2RGOFQ1QTYxQjhJX3JaaUxBWm1Ba1lJZ3JIQUh3eXhqd2E4amFoWkRFR1dUYk12UDR2a1dCb0hJRlNOU05ObEp4VGhXYXVkN21GMlJtRkp6YU5uY1FSeVBqQjN5N1JieDVPcFQxN2hZUWo2SllzMVBhRWpacVotTFdGSzBnbFAwOUluaEV5OUVWSThGZVY1UHh4VHBlQjkxQUE2WWIwaHhNQm9TRnQ4ZWxFa0RNY2c0QXZqaTQzQ3cyM21HMk94d09zMWIzUDR2OFZuR2hYQTR0Wk91ZHE2X09SVmtSdEs1WHJTUU5zS3FpS2RQV1h1NmJqQzNHeWNVa29SN3VzQmpPbmtuVHpaSVpTeGlhd2VDZGJMc2lFU05mWmxYSm5xSmdmZTAtWkpJMVdhamtheUlFNEdDbUMzSnB1d0xwd1FPQk5KMFJ6VlVoaWJaNnFaY2FUenctd1BGVndUdWxjQzY2bFhxclFWT05CclNmZFo4N2NzbjV4VUpyV3pvUm1VRjY3TmlXSDZCU1Q2NnZzSWVPeVEtbnlR?oc=5" target="_blank">《選罷法》1分鐘修成「鳥籠罷免法」，英日美有誰這樣做？44年修正6次這次最離譜？一表看差在哪 - 奇摩新聞</a></td>
+        </tr><tr class="" data-source="DPwlTrZS19VcFhcDRstR12Kn7tgs0J2bJSypoWC3goI" data-date="Fri, 20 Dec 2024 08:00:00 GMT" data-title="選罷法修正案三讀通過 黃珊珊指「沒提高罷免門檻」：杜絕幽靈連署 - 奇摩新聞">
+            <td>Fri, 20 Dec 2024 08:00:00 GMT</td>
+            <td>GNews 總統罷免條件</td>
+            <td><a href="https://news.google.com/rss/articles/CBMimwNBVV95cUxQWm1DVHNtZ0ExMTllVW84ZXNqWmlGQVJaYU16NzZ3T2xiSVNfQ2JoVnByT19ZczNBckUtd3FYUGlPNmJCRW5RU3hDeHFNaVhEaVNxOVE4bzZ1d0o0bm4yUi16RUZ3QlFIYjQ1US1Wb3o3dkI3U01UdEtRcFlhdG02V3ZRMUVoX05BMExUaDRSMmFCUFNFUmF5cS1xc0pFczF6VXBHdFVNX0ZYUUt5NjFjUmJXaHhXeFUyelhMLVhucG54ZkdIUFpHNFBES0FXTnhnWnFjVWJPNnQwakxUNXVkeXYxbU90TlpIenctQXBEU1NVeGtCT1VUTlczZ01KS1BmeVpGQVFlSEVvUmVCYWV2N1BKZklxTVpneVBjLXg5eEZlU2ZfZWxJVDM5aWRCb0F2YjE3MkxaSjdKWmR3T0tyVVdIMWhDQTctS1lCZEJIS2Q5Z2xFenBCR2w1bTB5clAxRlY1Wjh1WE41UUpfYU53WUVULXd1WUFlckJiV3B2MEtkQW1ZNFc5ampLZ1lsSDdObWJvLXoyX1k3RVU?oc=5" target="_blank">選罷法修正案三讀通過 黃珊珊指「沒提高罷免門檻」：杜絕幽靈連署 - 奇摩新聞</a></td>
         </tr><tr class="" data-source="DPwlTrZS19VcFhcDRstR12Kn7tgs0J2bJSypoWC3goI" data-date="Wed, 08 Jan 2025 08:00:00 GMT" data-title="互嗆罷免不如倒閣？徐巧芯提1條件：國民黨像笨蛋嗎 - 奇摩新聞">
             <td>Wed, 08 Jan 2025 08:00:00 GMT</td>
             <td>GNews 總統罷免條件</td>
@@ -173,6 +176,10 @@
             <td>Fri, 20 Dec 2024 08:00:00 GMT</td>
             <td>GNews 總統罷免條件</td>
             <td><a href="https://news.google.com/rss/articles/CBMi7AJBVV95cUxNamZRSEZqZG9qX2o4U1d4YXhqRWZSMlppSktrc3F2UE5zOEJzRzB6V2hPaHNjcC02dDhGYmN5NnB5ay0zc0dxQjhJb1h5dzE5WkFqOFJ3ODZ2dnZmU25vRWFfM2hXb212Tkp1bTkwaExIajN3OEZSRTRnekt1ZVNoMEtGcnhOY3BILUc2bElqTmx2eEQyUW9QWWZKem1MZ2YwWnIwc2I5RGE5VVVHSTFPR3dxTVZKWDVYckpMRHkyb3JuVVBDbGRIeGxROUdBWGNFVS1sLTBfX3NZQW1jT01vMXdHY2NZMEIzNm5qX2VpSWQweXU0bnF5ekdPQks3aUM1UHRzbUNLRU1fc1lsQldPLVhHMVhyYm4yaFBFc29kMF9QRDN6blhCMGE4dEZSeFVjaUhVNFFmX0ZPMXQzNUt4TWtKNlBzV283WklSZHhheWRpZFYxaEF4czVsSlVQRFFxMkZmS3h5VU10bkFU?oc=5" target="_blank">經過漫長衝突...江啟臣敲槌宣布「《選罷法》修正案」三讀通過！ - 奇摩新聞</a></td>
+        </tr><tr class="" data-source="DPwlTrZS19VcFhcDRstR12Kn7tgs0J2bJSypoWC3goI" data-date="Fri, 28 Jun 2024 07:00:00 GMT" data-title="藍啟動《選罷法》修法提高罷免門檻 柯文哲反對：但連署程序應更嚴謹 - rwnews.tw">
+            <td>Fri, 28 Jun 2024 07:00:00 GMT</td>
+            <td>GNews 總統罷免條件</td>
+            <td><a href="https://news.google.com/rss/articles/CBMiUkFVX3lxTFBSVDFvRlZIRDhaTGs4WlF5eWxZNk1Hajd1T2FDVjhmWWhDYmRwMEtGS0FHRF9KMGw1aXBySHdtdll4SzVRSHQ0YW1QTmlyZmVvbXc?oc=5" target="_blank">藍啟動《選罷法》修法提高罷免門檻 柯文哲反對：但連署程序應更嚴謹 - rwnews.tw</a></td>
         </tr><tr class="" data-source="DPwlTrZS19VcFhcDRstR12Kn7tgs0J2bJSypoWC3goI" data-date="Sun, 30 Jun 2024 07:00:00 GMT" data-title="柯文哲反對更動罷免門檻 朱立倫曝部分藍委沒要求提高：只希望更嚴謹合理 - rwnews.tw">
             <td>Sun, 30 Jun 2024 07:00:00 GMT</td>
             <td>GNews 總統罷免條件</td>
@@ -237,18 +244,14 @@
             <td>Fri, 10 Jan 2025 08:00:00 GMT</td>
             <td>GNews 總統罷免條件</td>
             <td><a href="https://news.google.com/rss/articles/CBMizANBVV95cUxNVnlzQjJPYzRheTlQTmJqUDhHRmVfeWVXTXFTRDZWdkh6aFBodXBEUDgxZUFFUFN1Sm1GSmpvWmlfNEJ1d1h6amY5VldicUJ0R0lWc2MyaDNmWW1FUjR1SlMwdGx3NFBGUDZBS1paWHZ6ZHplQkJWcVdlXzZQeUlJRzhhaThmNlRaSVJSSlRjRS1VaHMtcVZ4Z3ZTTFBQQXFGYm1KaWNrMmNtRUlCbjdWMW1KM2liQVBZSk5lNWlFNEVLWi1icTh2aF9ES3AtSGRKTWNMcFRLNlF3ckhvN09mMmFTb0drODNfblI3OGR6VVBhMGd0aWJKckhrRDVmUmJHSTZwbVFLblJ4by1EUXcxTkoxWmx5ZnZSTzNLX3EyYVFfaE4wZkV1WlRjdzhzaGx3S1VwMl9qenNSd1lEV1BPOGx1d2ZTa1pueWFkQ25XcEtvQWs3czNxZi1zYld0eFBqMy02WnpfX3lKbnBVampQQzZxMDI2NENLNkFxc0o2NENhLWd2azh0eXFqYk1lbWxvdGNvZll1VHVoMTFhWnpBa0J0MUk5VjFCeHFPd2V6THFRUTgzNkpwQ3FQSWV2T2pCMHZCYUJIZXNMSWpP?oc=5" target="_blank">立法院長選舉提名、表決、職權、任期與罷免 重點整理一次看 - 奇摩新聞</a></td>
-        </tr><tr class="" data-source="DPwlTrZS19VcFhcDRstR12Kn7tgs0J2bJSypoWC3goI" data-date="Fri, 24 Jan 2025 08:00:00 GMT" data-title="大罷免掀浪潮 學者曝符5條件立委恐陷「魷魚遊戲」風暴 - 聯合報數位版">
-            <td>Fri, 24 Jan 2025 08:00:00 GMT</td>
-            <td>GNews 總統罷免條件</td>
-            <td><a href="https://news.google.com/rss/articles/CBMiV0FVX3lxTFB3ckhYREQwQm5xbVlhOTJnNXY0aDlaUnRFYUp5M2ROcENzZ0ZEcHVCZ0paZzdSbjlzZG4ydlpSSmtTTkthOHhxb1dhWlpWdEI3SzhrSTFMMA?oc=5" target="_blank">大罷免掀浪潮 學者曝符5條件立委恐陷「魷魚遊戲」風暴 - 聯合報數位版</a></td>
-        </tr><tr class="" data-source="DPwlTrZS19VcFhcDRstR12Kn7tgs0J2bJSypoWC3goI" data-date="Fri, 18 Apr 2025 06:00:00 GMT" data-title="蔣萬安喊倒閣、朱立倫嗆罷免賴清德 難度有多高？可行性一次看 - 壹蘋新聞網">
-            <td>Fri, 18 Apr 2025 06:00:00 GMT</td>
-            <td>GNews 總統罷免條件</td>
-            <td><a href="https://news.google.com/rss/articles/CBMigAFBVV95cUxPcUJUSVNUaEZ5R3h3VEFtREpfamJUZTktNllOdjNuMlQyVEcyMmZSRkd2aTY5ZTN0dmpaM05oMjVMRE9MeWN4MTVhbmFlLWdkVl9FWWx6eXRsY3VUaHJMdUVaZ0otdXMtY0lqak0tVDI3UUN2aXMwQkZTWEI4TFNtaQ?oc=5" target="_blank">蔣萬安喊倒閣、朱立倫嗆罷免賴清德 難度有多高？可行性一次看 - 壹蘋新聞網</a></td>
         </tr><tr class="" data-source="DPwlTrZS19VcFhcDRstR12Kn7tgs0J2bJSypoWC3goI" data-date="Sun, 12 Apr 2020 07:00:00 GMT" data-title="真的假的？罷免制度不是多數民主國家的常態？ - 報導者The Reporter">
             <td>Sun, 12 Apr 2020 07:00:00 GMT</td>
             <td>GNews 總統罷免條件</td>
             <td><a href="https://news.google.com/rss/articles/CBMiXkFVX3lxTE5jWXRjYnpqMzdMN3hnQmhqOFJLUU9IYU04UUREODNQMUJ0Y1RyRFBLLWVCd3Jvb3BtVlRYakhGczVidjBJRkVaZjR2NXdIMzc0QzRtZFlhSkk2SWRieXc?oc=5" target="_blank">真的假的？罷免制度不是多數民主國家的常態？ - 報導者The Reporter</a></td>
+        </tr><tr class="" data-source="DPwlTrZS19VcFhcDRstR12Kn7tgs0J2bJSypoWC3goI" data-date="Fri, 18 Apr 2025 06:00:00 GMT" data-title="蔣萬安喊倒閣、朱立倫嗆罷免賴清德 難度有多高？可行性一次看 - 壹蘋新聞網">
+            <td>Fri, 18 Apr 2025 06:00:00 GMT</td>
+            <td>GNews 總統罷免條件</td>
+            <td><a href="https://news.google.com/rss/articles/CBMigAFBVV95cUxPcUJUSVNUaEZ5R3h3VEFtREpfamJUZTktNllOdjNuMlQyVEcyMmZSRkd2aTY5ZTN0dmpaM05oMjVMRE9MeWN4MTVhbmFlLWdkVl9FWWx6eXRsY3VUaHJMdUVaZ0otdXMtY0lqak0tVDI3UUN2aXMwQkZTWEI4TFNtaQ?oc=5" target="_blank">蔣萬安喊倒閣、朱立倫嗆罷免賴清德 難度有多高？可行性一次看 - 壹蘋新聞網</a></td>
         </tr><tr class="" data-source="DPwlTrZS19VcFhcDRstR12Kn7tgs0J2bJSypoWC3goI" data-date="Mon, 15 Jun 2020 07:00:00 GMT" data-title="「民主國家很少在罷免」是真的嗎？美國一年超過200場罷免，連阿諾也靠補位當上州長？｜城市冷知識#22 - 未來城市＠天下">
             <td>Mon, 15 Jun 2020 07:00:00 GMT</td>
             <td>GNews 總統罷免條件</td>
@@ -261,6 +264,10 @@
             <td>Sat, 25 Jan 2025 08:00:00 GMT</td>
             <td>GNews 總統罷免條件</td>
             <td><a href="https://news.google.com/rss/articles/CBMibkFVX3lxTE45OWphNGthUE9fVjMzSDg2d1JvRFU1Sml0bDNzajY2VFdhYmVMeTlSS1ltdF9BeUNsYXJ2S2xjQVd1eXlfQ1hrVHF1YkZ4NU1qTTQ5b1dGTHpYU1Q0ZTJxTU83LXlKd3k3OE9qMHNR?oc=5" target="_blank">藍綠同步發動罷免 綠委：可以合作倒閣讓總統解散國會 - chinatimes.com</a></td>
+        </tr><tr class="" data-source="DPwlTrZS19VcFhcDRstR12Kn7tgs0J2bJSypoWC3goI" data-date="Mon, 15 Jun 2020 08:46:05 GMT" data-title="【罷韓紀錄】台灣史上第一位地方首長遭罷：93萬高雄選民，終結韓國瑜528天市長任期 - 報導者The Reporter">
+            <td>Mon, 15 Jun 2020 08:46:05 GMT</td>
+            <td>GNews 總統罷免條件</td>
+            <td><a href="https://news.google.com/rss/articles/CBMicEFVX3lxTE5KaEVLa2pDYm9aMHlTQ1RObmlDaVF6TWZZTEhhWUZEbjgycGZaODBLYXllV1FxcWtld1lVXzJjMnhqSERmV1g2Y3R1Q0JWeU0zV0U1UUh6MWJUd0NCTXV1NnZMVmtiel9Sa2VBVGJIRmY?oc=5" target="_blank">【罷韓紀錄】台灣史上第一位地方首長遭罷：93萬高雄選民，終結韓國瑜528天市長任期 - 報導者The Reporter</a></td>
         </tr><tr class="" data-source="DPwlTrZS19VcFhcDRstR12Kn7tgs0J2bJSypoWC3goI" data-date="Tue, 09 Jul 2024 07:00:00 GMT" data-title="新聞透視》立院火併藍欲化解大罷免壓力- 政治要聞- 中國時報 - chinatimes.com">
             <td>Tue, 09 Jul 2024 07:00:00 GMT</td>
             <td>GNews 總統罷免條件</td>
@@ -281,6 +288,10 @@
             <td>Tue, 17 Oct 2023 07:00:00 GMT</td>
             <td>GNews 總統罷免條件</td>
             <td><a href="https://news.google.com/rss/articles/CBMi2ANBVV95cUxPUWFEcHVzbDNWVkMxdjdaOFFpQjRTVUQwX1RVbGRSaFRJb0xqQ1R0Zk1LYTVrS1hNNnZTeHdkLXVVeE92a1FycGNxR1h6cG41NDFBajhHRHlKZkkybVJYTm5VR1FXQlB5a0FTd0xYQ1YweUltRWhwcnRleXBvNklTc09sVnhCQ01EWmJqcHE1M0tUVG9kdjNLbTJIWGNLQ2o2dURWaVdRZE10b2QtcWlYSV81QmdiakNxSG5UcU8wLWFMN2U3NHRwTkVZaEsyNVFJbjRKODk0VDJkVEpUeWhXZ3Y5LWJQMVVIbW5iWWZYWlRXcWlpLWZySXhfcWxUdkhlS0ZrNURRVDRKWkdQeUlnR3dOeXF5ZDBqNmZZN0doZTBIS1BIdWVuX3RSb3pvT19CdmpyT2M1U25ZVnJ3WW5wellUejdWWVl6aGstd2VzNDlZWEFMMXNJZ090aVI5TW81VmtXX1I3RXA4ZDJzTWw4aWFkazdHbkZ1WXplQ0R1eWlTLVpWWTZjQ1BBN0tvbGkxV1J5UnJibHR0WHpBd0tGVjNBQ09xRmMyU251a1lldXR3Z3IxRXpCcXVEMjducmotd0FhdUtQM25SaWtYbTlxdFhaQ3hfYkd5?oc=5" target="_blank">2024選舉知識懶人包｜總統連署門檻要多少人？參加總統連署要帶什麼？法律怎麼規定？ - 奇摩新聞</a></td>
+        </tr><tr class="" data-source="DPwlTrZS19VcFhcDRstR12Kn7tgs0J2bJSypoWC3goI" data-date="Sun, 30 Jun 2024 07:00:00 GMT" data-title="藍委修罷免門檻有變數 民眾黨反對調門檻，朱立倫與藍黨團內也不完全支持 - 奇摩新聞">
+            <td>Sun, 30 Jun 2024 07:00:00 GMT</td>
+            <td>GNews 總統罷免條件</td>
+            <td><a href="https://news.google.com/rss/articles/CBMi1gNBVV95cUxOWDY2aGNQWjBlajlscC1JdmtvSVN5MHhhLVN2MmRubXloX2k2Yk1XVVE4LUtDUnF0cmU5T2R0ZmlQRF94eVRFcWtsZGJBangxQWh3Y2liWHdVMGdDZk9ZVk5RSjNiT01tejNGUHZCUU92bVVoUkpKbFd0eVVKcHF3Q1A5ZnBXWkVIM0tkb1NSUmdCNlJWZzJDQWRVQnVXS1pQbkZzSmlYTFNsOEg3MnZfRHNqdm01WkdnVTdKVEV5REV3UVg5LTQyVXhLdnhQd3YzWFpNUDBkOWY3bDZfSDI2WHNWNmxpZnBnX0pYQkl1aTdOUGRUZU1vY0NWTmN5Wk8wMy1YSnJjTUQ0MlRXeElfNndfQ2JVSmU2VDM4SFVfaFRHVzBiMFJBeVBwUU9uOVFtME1GZGs4OFpLbEhmYjROVXk4dXhCZWU1WnhGY2Jmc3lkajZJZXRndjVHQ0pRSlFpVzB0dDhVczhHa3U4ZlhRTFM3dDN0eHZRa3BPc3ktT0wxOFMwaElZalhoZk5jekVhU3lPYXczM0o5QTk3SGhlZWlxTlU3alRUMTFLX3FnRDdOU0MtU3BFWTRjQnBmU21nUUg2WUM0alJld016V1dZQmp3RjVMQQ?oc=5" target="_blank">藍委修罷免門檻有變數 民眾黨反對調門檻，朱立倫與藍黨團內也不完全支持 - 奇摩新聞</a></td>
         </tr><tr class="" data-source="DPwlTrZS19VcFhcDRstR12Kn7tgs0J2bJSypoWC3goI" data-date="Mon, 11 Jan 2021 04:22:28 GMT" data-title="解析》一文看懂：美國國會如何「彈劾總統」，如何才能夠「將總統免職」 - 風傳媒">
             <td>Mon, 11 Jan 2021 04:22:28 GMT</td>
             <td>GNews 總統罷免條件</td>
@@ -309,10 +320,6 @@
             <td>Wed, 18 Dec 2024 08:00:00 GMT</td>
             <td>GNews 總統罷免條件</td>
             <td><a href="https://news.google.com/rss/articles/CBMiakFVX3lxTFBmbkVKWjVrd3JKaVFTS3FFYXZjT0xfUGpLb1FYUHp2bFN4VGZJNzQ0N2dJMWE1WDNQZG9aek9VNFQ4dDdoRFhmbC1YUDJFRGRQSlUzZ19OUGlRbG1mWkc1Um9hUFFxSG1RWnfSAW9BVV95cUxPMEZyT1pIQTlYSkhFMU5hTlRiZms5NW8tRU1HWXhwWlFjV0g1bmNRYTZSV1N6RFRJZG9wakpBRUlGV1l6OGhVRmxUQUVmTnpZRlBaX3g5ckt6RzZxM253YmFGZGRKVW51YmRpUjJHN0k?oc=5" target="_blank">藍營週五強推3惡法 黃暐瀚：想沒收罷免？三思！ - 自由時報</a></td>
-        </tr><tr class="" data-source="DPwlTrZS19VcFhcDRstR12Kn7tgs0J2bJSypoWC3goI" data-date="Fri, 20 Dec 2024 08:00:00 GMT" data-title="選罷法修正案三讀通過 黃珊珊指「沒提高罷免門檻」：杜絕幽靈連署 - 華視新聞網">
-            <td>Fri, 20 Dec 2024 08:00:00 GMT</td>
-            <td>GNews 總統罷免條件</td>
-            <td><a href="https://news.google.com/rss/articles/CBMickFVX3lxTE9kMERRSHBHOTdDQ3hXOEZJUU5fZVlHRkxiUkxILTV5MmhZeWdKRTRDVWVVQXlsa3oxV25SVFhOeG9NVGlCbnBXSHoyZXZEaEkzcEd3a19obW9rQWJ6UDJKMGI5d3JJQUpJRmliRUJpOGw4QQ?oc=5" target="_blank">選罷法修正案三讀通過 黃珊珊指「沒提高罷免門檻」：杜絕幽靈連署 - 華視新聞網</a></td>
         </tr><tr class="" data-source="DPwlTrZS19VcFhcDRstR12Kn7tgs0J2bJSypoWC3goI" data-date="Fri, 28 Jun 2024 07:00:00 GMT" data-title="修正選罷法 朱立倫：現行罷免門檻合理性可討論 - 自由時報">
             <td>Fri, 28 Jun 2024 07:00:00 GMT</td>
             <td>GNews 總統罷免條件</td>
@@ -321,10 +328,6 @@
             <td>Sun, 27 Apr 2025 10:20:00 GMT</td>
             <td>GNews 總統罷免條件</td>
             <td><a href="https://news.google.com/rss/articles/CBMickFVX3lxTE5MQnRuRXpXOEthWmxvcWNQODE3bzNYS2x6UV8tODEwaGFwenZ6c3NOdEZySnMzdVNybW1iOWVQU1JYT0s1TE1fM1Z4eTBMLXRCYndsaE5ISXBxSUwyVGRaZENETmFpTmdVUXBQZVFhTDE4Zw?oc=5" target="_blank">朱喊「罷免賴清德」 門檻高綠委直呼「不可能任務」 - 華視新聞網</a></td>
-        </tr><tr class="" data-source="DPwlTrZS19VcFhcDRstR12Kn7tgs0J2bJSypoWC3goI" data-date="Sun, 30 Jun 2024 07:00:00 GMT" data-title="柯文哲稱罷免連署「抄一抄就好」 周軒：暗諷罷樑民意！ - 自由時報">
-            <td>Sun, 30 Jun 2024 07:00:00 GMT</td>
-            <td>GNews 總統罷免條件</td>
-            <td><a href="https://news.google.com/rss/articles/CBMiakFVX3lxTE81WEF4Ml90UzU5N18zcXd1cGlMQk5zeTlhUkdQUm85aGI1dDFVX3NTNzJTa2RxT1l4elUxWUo4SGZ4ajlfcW1kOHlhX2dUXzlJY25LNzdKTFlrYUQ0OXdWRFhydU43N2Z1cWfSAW9BVV95cUxNLTdZMkJsRWlMV3I3eUg4VkszN3hnYV9OSGp0elJZdkMyeXVZdEhyZGpCOWwtbFcwODMyTmVtZDA0UkR0MUp5OVRNY1JuVExKUjI3aEdyQ0VmMlNhOC1oc1NkTlRabXdGeFBYYnluOGM?oc=5" target="_blank">柯文哲稱罷免連署「抄一抄就好」 周軒：暗諷罷樑民意！ - 自由時報</a></td>
         </tr><tr class="" data-source="DPwlTrZS19VcFhcDRstR12Kn7tgs0J2bJSypoWC3goI" data-date="Wed, 23 Apr 2025 14:40:00 GMT" data-title="國民黨罷免之戰各懷鬼胎？他預言「只要1條件」蔣萬安總統之路就還在 - 三立新聞網SETN.com">
             <td>Wed, 23 Apr 2025 14:40:00 GMT</td>
             <td>GNews 總統罷免條件</td>
@@ -732,6 +735,7 @@
         </tr>
 </tbody>
 </table>
+</div>
 
 <!-- About Modal -->
 <div id="aboutModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:1000;">

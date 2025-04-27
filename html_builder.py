@@ -47,6 +47,8 @@ def build_index_html(articles, feeds):
   .missing-date td:first-child {{ color: gray; }}
   #articleCount {{ margin: 10px 0; font-weight: bold; }}
   @keyframes fadeInModal {{ from {{ opacity: 0; transform: translate(-50%, -55%); }} to {{ opacity: 1; transform: translate(-50%, -50%); }}}}
+  .table-wrapper {{ width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; /* smooth scrolling on iOS. Makes the article table auto-scroll horizontally on small screens rather than breaking layout */ }}
+
 </style>
 </head>
 <body>
@@ -91,6 +93,7 @@ def build_index_html(articles, feeds):
 
 <div id="articleCount"></div>
 
+<div class="table-wrapper">
 <table id="newsTable">
 <thead>
 <tr>
@@ -103,6 +106,7 @@ def build_index_html(articles, feeds):
 {rows_html}
 </tbody>
 </table>
+</div>
 
 <!-- About Modal -->
 <div id="aboutModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:1000;">
