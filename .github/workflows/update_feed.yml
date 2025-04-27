@@ -36,5 +36,4 @@ jobs:
           else
             git commit -m "🔄 Auto-update news feed"
             git push
-          fi          git commit -m "🔄 Auto-update news feed" || echo "No changes to commit"
-          git push
+          fi
