@@ -1,14 +1,16 @@
+# html_builder.py
+
 from datetime import datetime
 
 def build_index_html(articles, feeds):
     now_utc = datetime.utcnow().strftime("%d %b %Y, %H:%M UTC")
 
-    # Prepare the sources list for the source filter
+    # Prepare source filter checkboxes
     source_filters_html = ""
     for feed in feeds:
-        source_filters_html += f"""<label><input type="checkbox" class="sourceFilter" value="{feed['uniqueid']}" checked> {feed['source']}</label><br>"""
+        source_filters_html += f"""<label><input type="checkbox" class="sourceFilter" value="{feed['uniqueid']}" checked> {feed['source']}</label>"""
 
-    # Prepare the initial table rows
+    # Prepare initial table rows
     rows_html = ""
     for article in articles:
         date_display = article["date"] if article["date"] else ""
@@ -19,31 +21,57 @@ def build_index_html(articles, feeds):
             <td><a href="{article['link']}" target="_blank">{article['title']}</a></td>
         </tr>"""
 
-    # Full HTML
     html = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>My News Feed</title>
 <style>
-  body {{ font-family: Arial, sans-serif; margin: 40px; }}
-  table {{ border-collapse: collapse; width: 100%; }}
-  th, td {{ text-align: left; padding: 8px; border-bottom: 1px solid #ddd; }}
+  body {{ font-family: Arial, sans-serif; margin: 20px; background-color: #f9f9f9; }}
+  h1 {{ margin: 0; }}
+  .header-bar {{ display: flex; justify-content: space-between; align-items: center; }}
+  .header-links a {{ margin-left: 15px; text-decoration: none; font-size: 0.9em; color: #007BFF; }}
+  .header-links a:hover {{ text-decoration: underline; }}
+  .source-scroll {{ max-height: 150px; overflow-y: auto; padding: 5px; border: 1px solid #ddd; background: #fafafa; border-radius: 4px; }}
+  .generated-time {{ font-size: 0.8em; color: #555; margin-top: 4px; }}
+  .filter-container {{ display: flex; gap: 40px; margin: 20px 0; background: #ffffff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }}
+  .filter-group {{ flex: 1; }}
+  .filter-group label {{ display: block; margin-bottom: 6px; }}
+  .filter-group select, .filter-group input[type="text"] {{ width: 80%; padding: 6px; margin-top: 6px; }}
+  .button-group button {{ margin-right: 10px; background-color: #888888; color: white; border: none; border-radius: 4px; cursor: pointer; }}
+  .button-group button:hover {{ background-color: #0056b3; }}
+  table {{ border-collapse: collapse; width: 100%; background: #ffffff; border-radius: 8px; overflow: hidden; }}
+  th, td {{ text-align: left; padding: 10px; border-bottom: 1px solid #ddd; }}
   th {{ background-color: #f2f2f2; cursor: pointer; }}
   .missing-date td:first-child {{ color: gray; }}
-  .filter-section {{ margin-bottom: 20px; }}
-  .filter-group {{ margin-bottom: 10px; }}
+  #articleCount {{ margin: 10px 0; font-weight: bold; }}
 </style>
 </head>
 <body>
-<h2>My News Feed</h2>
-<p><em>Page generated on {now_utc}</em></p>
 
-<div class="filter-section">
+<div class="header-bar">
+  <div>
+    <h1>My News Feed</h1>
+    <div class="generated-time">Page generated on {now_utc}</div>
+  </div>
+  <div class="header-links">
+    <a href="config.html" target="_blank">Config</a>
+    <a href="#" onclick="showAbout()">About</a>
+  </div>
+</div>
+
+<div class="filter-container">
   <div class="filter-group">
     <strong>Filter by source:</strong><br>
+    <div class="button-group">
+      <button onclick="selectAllSources()">Select All</button>
+      <button onclick="selectNoSources()">Select None</button>
+    </div>
+    <div class="source-scroll">
     {source_filters_html}
+    </div>
   </div>
+
   <div class="filter-group">
     <strong>Filter by time:</strong><br>
     <select id="timeFilter">
@@ -52,15 +80,14 @@ def build_index_html(articles, feeds):
       <option value="48h" selected>Past 48 hours</option>
       <option value="7d">Past week</option>
     </select>
-  </div>
-  <div class="filter-group">
+
+    <br><br>
     <strong>Search titles:</strong><br>
     <input type="text" id="searchBox" placeholder="Type keywords..." />
   </div>
-  <div class="filter-group">
-    <button onclick="resetFilters()">Reset Filters</button>
-  </div>
 </div>
+
+<div id="articleCount"></div>
 
 <table id="newsTable">
 <thead>
@@ -75,8 +102,15 @@ def build_index_html(articles, feeds):
 </tbody>
 </table>
 
+<!-- About Modal -->
+<div id="aboutModal" style="display:none; position:fixed; top:20%; left:30%; width:40%; background:white; border:1px solid #ccc; padding:20px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); border-radius:8px;">
+  <h3>About This Site</h3>
+  <p>This website displays the latest articles from selected RSS feeds. You can filter by source, time, and keyword search. It is automatically updated daily.</p>
+  <button onclick="document.getElementById('aboutModal').style.display='none'">Close</button>
+</div>
+
 <script>
-// --- Helper Functions ---
+// -- URL Parameters
 function getUrlParams() {{
     const params = new URLSearchParams(window.location.search);
     return {{
@@ -157,14 +191,38 @@ function parseBooleanSearch(query) {{
     }};
 }}
 
-// --- Filter and sort logic ---
 function applyFilters() {{
     const params = getUrlParams();
+
+    // If no sources provided, read from checked checkboxes
+    if (params.sources.length === 0) {{
+        params.sources = Array.from(document.querySelectorAll('.sourceFilter:checked')).map(cb => cb.value);
+    }}
+
+    // If no time provided, read from time filter
+    if (!params.time) {{
+        params.time = document.getElementById('timeFilter').value;
+    }}
+
+    // If no search provided, assume empty
+    if (!params.search) {{
+        params.search = '';
+    }}
+
     const sourceSet = new Set(params.sources);
     const filterTime = params.time;
     const searchFn = parseBooleanSearch(params.search);
 
     const now = new Date();
+
+    // If no sources selected, hide all rows immediately
+    if (params.sources.length === 0) {{
+        document.querySelectorAll('#newsTable tbody tr').forEach(row => {{
+            row.style.display = 'none';
+        }});
+        updateArticleCount();
+        return;
+    }}
 
     document.querySelectorAll('#newsTable tbody tr').forEach(row => {{
         const source = row.getAttribute('data-source');
@@ -173,7 +231,7 @@ function applyFilters() {{
 
         let show = true;
 
-        if (params.sources.length && !sourceSet.has(source)) show = false;
+        if (!sourceSet.has(source)) show = false;
 
         if (filterTime !== 'all' && dateStr) {{
             const articleDate = new Date(dateStr);
@@ -189,35 +247,39 @@ function applyFilters() {{
 
         row.style.display = show ? '' : 'none';
     }});
+
+    updateArticleCount();
 }}
 
-function resetFilters() {{
+
+
+function updateArticleCount() {{
+    const visible = Array.from(document.querySelectorAll('#newsTable tbody tr'))
+        .filter(row => row.style.display !== 'none').length;
+    const total = document.querySelectorAll('#newsTable tbody tr').length;
+    document.getElementById('articleCount').textContent = `Showing ${{visible}} of ${{total}} articles`;
+}}
+
+function selectAllSources() {{
     document.querySelectorAll('.sourceFilter').forEach(cb => cb.checked = true);
-    document.getElementById('timeFilter').value = '48h';
-    document.getElementById('searchBox').value = '';
     updateUrlParams();
     applyFilters();
 }}
 
-function setupEventListeners() {{
-    document.querySelectorAll('.sourceFilter').forEach(cb => cb.addEventListener('change', () => {{
-        updateUrlParams();
-        applyFilters();
-    }}));
-    document.getElementById('timeFilter').addEventListener('change', () => {{
-        updateUrlParams();
-        applyFilters();
-    }});
-    document.getElementById('searchBox').addEventListener('input', () => {{
-        updateUrlParams();
-        applyFilters();
-    }});
+function selectNoSources() {{
+    document.querySelectorAll('.sourceFilter').forEach(cb => cb.checked = false);
+    updateUrlParams();
+    applyFilters();
+}}
+
+function showAbout() {{
+    document.getElementById('aboutModal').style.display = 'block';
 }}
 
 function sortTable(colIndex) {{
     const tbody = document.querySelector('#newsTable tbody');
-    let asc = true;
     const rows = Array.from(tbody.rows);
+    let asc = true;
     rows.sort((a, b) => {{
         let valA = a.cells[colIndex].textContent.trim();
         let valB = b.cells[colIndex].textContent.trim();
@@ -236,7 +298,18 @@ document.addEventListener('DOMContentLoaded', () => {{
             cb.checked = params.sources.includes(cb.value);
         }});
     }}
-    setupEventListeners();
+    document.querySelectorAll('.sourceFilter').forEach(cb => cb.addEventListener('change', () => {{
+        updateUrlParams();
+        applyFilters();
+    }}));
+    document.getElementById('timeFilter').addEventListener('change', () => {{
+        updateUrlParams();
+        applyFilters();
+    }});
+    document.getElementById('searchBox').addEventListener('input', () => {{
+        updateUrlParams();
+        applyFilters();
+    }});
     applyFilters();
 }});
 </script>
