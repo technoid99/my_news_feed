@@ -1,0 +1,35 @@
+name: Update News Feed Daily
+
+on:
+  schedule:
+    - cron: "0 20 * * *"  # Currently set to 6 AM Australian EST (20:00 UTC the previous day)
+  workflow_dispatch:  # allows manually trigger if needed
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install feedparser
+        run: |
+          pip install feedparser
+
+      - name: Run update script
+        run: |
+          python main.py
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git commit -m "🔄 Auto-update news feed" || echo "No changes to commit"
+          git push
