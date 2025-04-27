@@ -4,6 +4,8 @@ Create your own customisable news feed website using simple RSS sources — auto
 
 This tool is designed for **anyone with a GitHub account**, no programming required beyond basic GitHub skills.
 
+Click here to see a sample feed: [My news feed](https://technoid99.github.io/my_news_feed/index.html)
+
 ---
 
 # ✅ Quick Setup Summary:
