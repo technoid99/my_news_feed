@@ -113,7 +113,7 @@ def build_index_html(articles, feeds):
 
   <div style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); background:white; padding:30px; width:90%; max-width:500px; border-radius:10px; box-shadow:0 6px 20px rgba(0,0,0,0.3); animation: fadeInModal 0.3s ease;">
     <h2 style="margin-top:0;">About This Site</h2>
-    <p style="margin:15px 0;">This website displays the latest articles from selected RSS feeds. You can filter by source, time, and keyword search. It is automatically updated daily.</p>
+    <p style="margin:15px 0;">This website displays the latest articles from selected RSS feeds. You can filter by source, time, and keyword search. It is automatically updated daily. Made by <a href = "https://github.com/technoid99/my_news_feed" target="_blank">@technoid99</a> with ❤️.</p>
     <div style="text-align:right;">
       <button style="padding:8px 16px; background:#007BFF; color:white; border:none; border-radius:5px; cursor:pointer;" onclick="document.getElementById('aboutModal').style.display='none'">Close</button>
     </div>

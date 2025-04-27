@@ -1,8 +1,8 @@
 [
   {
-    "source": "Sri Lanka tech",
-    "url": "https://news.google.com/rss/search?q=%28%28%22Sri+Lanka%22+AND+Australia%29+AND+%28technology+OR+tech%29%29+NOT+cricket",
-    "uniqueid": "-C5_d6eO4wHU1q6YXfMdbjWr77g2Z9_a3qx4Ho3v9Nc"
+    "source": "Sri Lanka tech not cricket",
+    "url": "https://news.google.com/rss/search?q=(%22Sri%20Lanka%22%20AND%20(technology%20OR%20tech))%20-cricket&hl=en-AU&gl=AU&ceid=AU%3Aen",
+    "uniqueid": "maCAYr6FNCvIFgfQJJUWNuLRDAvg2Lm9aQhlb8IpzhM"
   },
   {
     "source": "GNews 總統罷免條件",
