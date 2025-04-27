@@ -6,6 +6,18 @@ This tool is designed for **anyone with a GitHub account**, no programming requi
 
 ---
 
+# ✅ Quick Setup Summary:
+
+| Step | Action |
+|:-----|:-------|
+| 1 | Click **"Use this template"** |
+| 2 | Create your own repository |
+| 3 | Enable **GitHub Pages** (main branch, root folder) |
+| 4 | Customize your `feeds.json` |
+| 5 | Enjoy your personal news feed! 🚀 |
+
+---
+
 ## 📌 What This Project Does
 
 - Displays the latest articles from RSS feeds you choose.
@@ -21,37 +33,63 @@ This tool is designed for **anyone with a GitHub account**, no programming requi
 
 ## 🚀 How to Set Up Your Own News Feed
 
-1. **Fork or Copy This Repository**
+### 1. Make Your Own Copy
 
-   - Click the **Fork** button at the top right of this page, or
-   - Create a new repository and copy the files manually.
+- Click the green **"Use this template"** button at the top of this page.
+- Choose **"Create a new repository"**.
+- Give your repository a name (e.g., `my_news_feed`).
+- Click **Create repository**.
 
-2. **Rename Your Repository (Optional)**
+✅ You now have your own personal copy — no coding needed!
 
-   - You can name your repo anything you like, for example:  
-     `my_news_feed` or `daily-news-reader`.
+---
 
-3. **Enable GitHub Pages**
+### 2. Enable GitHub Pages
 
-   - Go to **Settings** → **Pages**.
-   - Under \"Source\", select the branch (usually `main`) and root (`/`).
-   - GitHub will generate a URL like:  
-     `https://your-username.github.io/your-repository-name`
+- In your new repository, go to **Settings**.
+- Scroll down to **Pages**.
+- Under **"Source"**, select:
+  - **Branch:** `main`
+  - **Folder:** `/ (root)`
+- Click **Save**.
 
-4. **Customise Your News Sources**
+✅ After a few seconds, GitHub will give you a live web link to your personal news feed!
 
-   - Open the `config.html` page in your repository.
-   - Edit, add, or remove RSS feeds using the easy web editor.
-   - Copy the updated `feeds.json` back into your GitHub repository (replace the old file).
+---
 
-5. **Automatic Daily Updates**
+### 3. Customize Your News Sources
 
-   - GitHub Actions will run every morning at **6AM AEST** (Australia Eastern Standard Time).
-   - It will pull the latest articles and update your `index.html` automatically.
+- In your repository, open the `config.html` file.
+- Click **"View raw"** (top right).
+- Use the simple web form to edit, add, or remove RSS feeds.
+- After making changes, **copy** the updated JSON text.
+- Then:
+  - Open `feeds.json`.
+  - Click the ✏️ **edit button**.
+  - Paste your updated feeds.json.
+  - Save the changes.
 
-6. **View Your Personal News Feed**
+✅ Now you control exactly what news you see!
 
-   - Go to your GitHub Pages link and enjoy your customised news feed!
+---
+
+### 4. How Updates Work
+
+- Every morning at **6AM AEST (Australia Eastern Standard Time)**,
+  GitHub Actions will automatically update your news feed.
+- You don't need to do anything — it refreshes itself!
+
+---
+
+### 5. View Your Personal News Feed
+
+- Visit your GitHub Pages link (found in **Settings → Pages**).
+- Bookmark it for quick access!
+
+✅ You can filter articles by:
+- Source
+- Time range (24h, 48h, 7d, or all time)
+- Keyword search (supports **AND**, **OR**, and **"quoted phrases"**)
 
 ---
 
@@ -81,6 +119,14 @@ Just GitHub + RSS!
 - Bookmark your feed and customise filters (source selection, keywords, time range) — they are saved in the URL!
 - Add niche topics (e.g., science, regional news, personal interests).
 - Remove or add feeds anytime by editing `feeds.json`.
+
+---
+
+## 📚 Need Help?
+
+- Check the About page on your news feed site.
+- Open an Issue in this repository if you get stuck.
+- Explore GitHub documentation if you're completely new!
 
 ---
 
