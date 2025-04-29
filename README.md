@@ -1,24 +1,11 @@
 # Personal News Feed Generator
 
-The original template is located [here](https://github.com/technoid99/my_news_feed/).
-
 Create your own customisable news feed website using simple RSS sources — automatically updated every day — hosted on GitHub Pages!
 
 This tool is designed for **anyone with a GitHub account**, no programming required beyond basic GitHub skills.
 
 Click here to see a sample feed: [My news feed](https://technoid99.github.io/my_news_feed/index.html)
-
----
-
-# ✅ Quick Setup Summary:
-
-| Step | Action |
-|:-----|:-------|
-| 1 | Click **"Use this template"** |
-| 2 | Create your own repository |
-| 3 | Enable **GitHub Pages** (repository Settings > Pages (left menu) > branch: main, root folder > Save button) |
-| 4 | Customize your `feeds.json` | [feeds.json Config tool](https://technoid99.github.io/my_news_feed/config.html)
-| 5 | Enjoy your personal news feed! 🚀 |
+This is the location of the original Github repository [template](https://github.com/technoid99/my_news_feed/).
 
 ---
 
@@ -35,7 +22,19 @@ Click here to see a sample feed: [My news feed](https://technoid99.github.io/my_
 
 ---
 
-## 🚀 How to Set Up Your Own News Feed
+# ✅ Quick Setup Instructions:
+
+| Step | Action |
+|:-----|:-------|
+| 1 | Click **"Use this template"** |
+| 2 | Create your own repository |
+| 3 | Enable **GitHub Pages** (repository Settings > Pages (left menu) > branch: main, root folder > Save button) |
+| 4 | Customize your `feeds.json` | [feeds.json Config tool](https://technoid99.github.io/my_news_feed/config.html)
+| 5 | Enjoy your personal news feed! 🚀 |
+
+---
+
+# 🚀 Detailed Setup Instructions
 
 ### 1. Make Your Own Copy
 
@@ -44,7 +43,7 @@ Click here to see a sample feed: [My news feed](https://technoid99.github.io/my_
 - Give your repository a name (e.g., `my_news_feed`).
 - Click **Create repository**.
 
-✅ You now have your own personal copy — no coding needed!
+✅ You now have your own personal copy!
 
 ---
 
@@ -88,12 +87,13 @@ Click here to see a sample feed: [My news feed](https://technoid99.github.io/my_
 ### 5. View Your Personal News Feed
 
 - Visit your GitHub Pages link (found in **Settings → Pages**).
-- Bookmark it for quick access!
+- Use the source filter, time filter and keyword filter to your liking.
+- Bookmark it for quick access! (yes, even with the filters!)
 
 ✅ You can filter articles by:
 - Source
 - Time range (24h, 48h, 7d, or all time)
-- Keyword search (supports **AND**, **OR**, and **"quoted phrases"**)
+- Keyword search (supports **AND**, **OR**, and **"quoted phrases"**) eg. (grapes OR berries) AND apples -bananas
 
 ---
 
@@ -120,9 +120,48 @@ Just GitHub + RSS!
 
 ## 💡 Tips
 
-- Bookmark your feed and customise filters (source selection, keywords, time range) — they are saved in the URL!
+- Bookmark your feed with customised filters (source selection, keywords, time range) — they are saved in the URL!
 - Add niche topics (e.g., science, regional news, personal interests).
 - Remove or add feeds anytime by editing `feeds.json`.
+
+---
+
+## 💡 Advanced Tips
+
+### Add a Google News search as an RSS feed
+
+1. Create a bookmarklet
+a. Copy this javascript code that obtains the exact search query and makes it an RSS feed ```javascript:(function(){let url=window.location.href;if(url.includes('news.google.com/')){url=url.replace('news.google.com/','news.google.com/rss/');navigator.clipboard.writeText(url).then(()=>alert('RSS URL copied to clipboard!')).catch(err=>console.error('Copy failed',err));}else{alert('Not a Google News page.');}})();```
+b. Create a new bookmark in your browser. (I like to save it to Bookmarks bar for easy access)
+c. Paste it into the URL field of the bookmark.
+d. Name it something like "Get Google News RSS".
+
+2. Manually search using Google News
+a. Go to [https://news.google.com/](https://news.google.com/)
+b. Run your news search query or click on a Topic heading.
+c. While on your resulting Google News search page, click the bookmarklet. It will copy the RSS feed URL to your clipboard.
+
+3. Go to your my_news_feed Config file or use [this one](https://technoid99.github.io/my_news_feed/config.html) from the template and use the copied URL as your RSS URL.
+---
+
+## 💡 Use Cases
+
+### Individual
+
+#### Researcher wanting to be up to date on the latest on various topics
+1. put all interests in one feeds.json
+2. publish the repository
+3. visit the corresponding Github page
+4. selectively check RSS feed source based on topic of interest and the time and keyword filter as desired.
+5. Bookmark that exact URL.
+6. Comeback daily (or per your scheduling) for updates
+
+### Small enterprise with multiple users
+
+1. Admin manages all the feeds.json and individuals run a search based on their desires sources and filters.
+2. Individual user bookmarks the URL to receive updates next time with their customised settings
+3. Each individual user can use Config to add a new entry.
+4. Paste the new entry Issues ticket for Admin to add to feeds.json
 
 ---
 
