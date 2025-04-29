@@ -1,5 +1,7 @@
 # Personal News Feed Generator
 
+The original template is located [here](https://github.com/technoid99/my_news_feed/).
+
 Create your own customisable news feed website using simple RSS sources — automatically updated every day — hosted on GitHub Pages!
 
 This tool is designed for **anyone with a GitHub account**, no programming required beyond basic GitHub skills.
@@ -14,8 +16,8 @@ Click here to see a sample feed: [My news feed](https://technoid99.github.io/my_
 |:-----|:-------|
 | 1 | Click **"Use this template"** |
 | 2 | Create your own repository |
-| 3 | Enable **GitHub Pages** (main branch, root folder) |
-| 4 | Customize your `feeds.json` |
+| 3 | Enable **GitHub Pages** (repository Settings > Pages (left menu) > branch: main, root folder > Save button) |
+| 4 | Customize your `feeds.json` | [feeds.json Config tool](https://technoid99.github.io/my_news_feed/config.html)
 | 5 | Enjoy your personal news feed! 🚀 |
 
 ---
@@ -46,7 +48,22 @@ Click here to see a sample feed: [My news feed](https://technoid99.github.io/my_
 
 ---
 
-### 2. Enable GitHub Pages
+### 2. Customize Your News Sources
+
+- Before you first publish, you can use this [feeds.json config tool](https://technoid99.github.io/my_news_feed/config.html) to build your ```feeds.json``` file content. After you publish use your own config tool (```https://your-username.github.io/your-repository-name/config.html```) as it'll pull in your existing feeds.json file so you can better edit it.
+- Use the simple web form to edit, add, or remove RSS feeds.
+- After making changes, **copy** the updated JSON text.
+- Then:
+  - Click `feeds.json` in your repository file listing
+  - Click the ✏️ **edit button**.
+  - Paste your updated feeds.json.
+  - Save the changes.
+
+✅ Now you control exactly what news you see!
+
+---
+
+### 3. Enable GitHub Pages / Publish!
 
 - In your new repository, go to **Settings**.
 - Scroll down to **Pages**.
@@ -59,27 +76,12 @@ Click here to see a sample feed: [My news feed](https://technoid99.github.io/my_
 
 ---
 
-### 3. Customize Your News Sources
-
-- In your repository, open the `config.html` file.
-- Click **"View raw"** (top right).
-- Use the simple web form to edit, add, or remove RSS feeds.
-- After making changes, **copy** the updated JSON text.
-- Then:
-  - Open `feeds.json`.
-  - Click the ✏️ **edit button**.
-  - Paste your updated feeds.json.
-  - Save the changes.
-
-✅ Now you control exactly what news you see!
-
----
-
 ### 4. How Updates Work
 
 - Every morning at **6AM AEST (Australia Eastern Standard Time)**,
   GitHub Actions will automatically update your news feed.
 - You don't need to do anything — it refreshes itself!
+- Note: if you wish to update outside of this schedule got to Actions (top menu) > "Update News Feed Daily" (left menu) > Run workflow dropdown (right side) > Run workflow.
 
 ---
 
