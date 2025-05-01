@@ -2,8 +2,13 @@ name: Update News Feed Daily
 
 on:
   schedule:
-    - cron: "0 20 * * *"  # Currently set to 6 AM Australian EST (20:00 UTC the previous day)
-  workflow_dispatch:  # allows manually trigger if needed
+    - cron: "0 20 * * *"  # Daily at 6 AM AEST (UTC+10)
+  workflow_dispatch:       # Manual trigger
+  push:                    # NEW: Trigger on feeds.json change
+    branches:
+      - main
+    paths:
+      - 'feeds.json'       # Only trigger if this file is changed
 
 permissions:
   contents: write
