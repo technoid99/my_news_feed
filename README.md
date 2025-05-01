@@ -158,6 +158,18 @@ c. While on your resulting Google News search page, click the bookmarklet. It wi
 3. Go to your my_news_feed Config file or use [this one](https://technoid99.github.io/my_news_feed/config.html) from the template and use the copied URL as your RSS URL.
 ---
 
+## Troubleshooting
+
+### The website doesn't update
+
+1. Check Actions.
+2. If `Update News Feed Daily` fails, click into it and see why.
+3. Scroll to the end of the error message. If it says:
+```json.decoder.JSONDecodeError: Illegal trailing comma before end of array: line 146 column 4 (char 5393) Error: Process completed with exit code 1.```
+Then you've probably manually edited your feeds.json and left a comma at the end of the json file. Delete it and run the workflow again.
+
+---
+
 ## 💡 Use Cases
 
 ### Individual
