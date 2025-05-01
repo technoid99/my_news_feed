@@ -1,17 +1,27 @@
 [
   {
-    "source": "Sri Lanka tech not cricket",
-    "url": "https://news.google.com/rss/search?q=(%22Sri%20Lanka%22%20AND%20(technology%20OR%20tech))%20-cricket&hl=en-AU&gl=AU&ceid=AU%3Aen",
-    "uniqueid": "maCAYr6FNCvIFgfQJJUWNuLRDAvg2Lm9aQhlb8IpzhM"
+    "source": "知乎日报",
+    "url": "https://rsseverything.com/feed/490.xml",
+    "uniqueid": "hL9oNeY6fNKtqgqxL77LFww8FeYerJOWGi3labGoZsI"
   },
   {
-    "source": "GNews 總統罷免條件",
-    "url": "https://news.google.com/rss/search?q=總統罷免條件&hl=zh-TW&gl=TW&ceid=TW%3Azh-Hant",
-    "uniqueid": "DPwlTrZS19VcFhcDRstR12Kn7tgs0J2bJSypoWC3goI"
+    "source": "Bing search - banking",
+    "url": "http://bing.com/news/search?q=banking+&format=rss",
+    "uniqueid": "GLkTOmZQmfLNCa2aNoJogfqb5yeEV2n9sQrjAIs4fh4"
   },
   {
-    "source": "Subcables",
-    "url": "https://news.google.com/rss/search?q=%22submarine%20cable%22%20OR%20%22undersea%20cable%22%20OR%20%22subsea%20cable%22%20OR%20%22ocean%20cable%22%20OR%20%22subcables%22",
-    "uniqueid": "RFpqox0asidQzIqGl6Uwt_cZqMfugpe_64yssj64TeY"
+    "source": "TechCrunch",
+    "url": "https://techcrunch.com/feed/",
+    "uniqueid": "-EGH98Uu-bNGGYJjzUbJaxispRlcW0A8PpoVWrOk0xQ"
+  },
+  {
+    "source": "News - Sydney Morning Herald",
+    "url": "https://www.smh.com.au/rss/feed.xml",
+    "uniqueid": "JAAS1FjlOPlYRTGt9LiEocAGhCCRm-nqpIJJ2elO-qk"
+  },
+  {
+    "source": "Reddit - Soccer",
+    "url": "https://www.reddit.com/r/soccer/.rss",
+    "uniqueid": "C5NefpyOSONFKj4IEI8ojrH_dEf8wX0vOZciPSYaWww"
   }
 ]
