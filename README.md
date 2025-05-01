@@ -83,10 +83,11 @@ This is the location of the original Github repository [template](https://github
 
 ✅ Now you control exactly what news you see!
 
-💡 Looking for news sources?
-* use advance search keyword `feeds:` in Bing Search [example](https://www.bing.com/search?q=feed%3A+%22technology)
+💡 Looking for RSS sources?
+* use advance search keyword `feeds:` in Bing Search [example](https://www.bing.com/search?q=feed%3A+%22technology), or Yahoo or DuckDuckGo
 * [Google News](https://news.google.com). Run your search then in the URL add `rss/` after the google.com. Use that URL as your RSS source URL.
 * run a basic Google search for 'RSS news feeds'
+* Create your own through [RSSEverything](https://rsseverything.com), [PolitePol](https://politepol.com)
 
 ---
 
