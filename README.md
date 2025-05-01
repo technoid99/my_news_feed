@@ -1,8 +1,9 @@
 # Personal News Feed Generator
 
-Create your own customisable news feed website using simple RSS sources — automatically updated every day — hosted on GitHub Pages!
+This template allows you to create your own customisable news feed website from simple RSS sources.
+After setting up your sources and activating your Github Pages page (your news feed website), your news feed website will update every day.
 
-This tool is designed for **anyone with a GitHub account**, no programming required beyond basic GitHub skills.
+This tool is designed for **anyone with a GitHub account**, no programming required.
 
 Click here to see a sample feed: [My news feed](https://technoid99.github.io/my_news_feed/index.html)
 This is the location of the original Github repository [template](https://github.com/technoid99/my_news_feed/).
@@ -29,8 +30,13 @@ This is the location of the original Github repository [template](https://github
 | 1 | Click **"Use this template"** |
 | 2 | Create your own repository |
 | 3 | Enable **GitHub Pages** (repository Settings > Pages (left menu) > branch: main, root folder > Save button) |
-| 4 | Customize your `feeds.json` | [feeds.json Config tool](https://technoid99.github.io/my_news_feed/config.html)
-| 5 | Enjoy your personal news feed! 🚀 |
+| 4 | Go make yourself a coffee ☕ or tea 🫖
+| 5 | Go do your new news feed webpage `https://yourusername.github.io/your-repository-name/config.html`
+| 6 | Use the Config tool (top right hand corner) to create your `feeds.json` content
+| 7 | Paste the content into your `feeds.json` file. (Click < > Code in the top left corner to get back to your repository file system)
+| 8 | Refresh the website by manually launching your `Update News Feed Daily` workflow (Actions > Update News Feed Daily > Run Workflow > Run Workflow)
+| 9 | Enjoy your personal news feed!  🚀 |
+| 10 | Drink your beverage ☕ 🫖
 
 ---
 
@@ -47,22 +53,7 @@ This is the location of the original Github repository [template](https://github
 
 ---
 
-### 2. Customize Your News Sources
-
-- Before you first publish, you can use this [feeds.json config tool](https://technoid99.github.io/my_news_feed/config.html) to build your ```feeds.json``` file content. After you publish use your own config tool (```https://your-username.github.io/your-repository-name/config.html```) as it'll pull in your existing feeds.json file so you can better edit it.
-- Use the simple web form to edit, add, or remove RSS feeds.
-- After making changes, **copy** the updated JSON text.
-- Then:
-  - Click `feeds.json` in your repository file listing
-  - Click the ✏️ **edit button**.
-  - Paste your updated feeds.json.
-  - Save the changes.
-
-✅ Now you control exactly what news you see!
-
----
-
-### 3. Enable GitHub Pages / Publish!
+### 2. Enable GitHub Pages
 
 - In your new repository, go to **Settings**.
 - Scroll down to **Pages**.
@@ -75,10 +66,33 @@ This is the location of the original Github repository [template](https://github
 
 ---
 
+### 3. Setup Your News Sources
+
+- Go to your newly published Github Pages page (`https://your-username.github.io/your-repository-name`)
+- Click Config in the top right hand corner.
+- Use the simple web form to add or remove RSS feeds.
+- After making changes, **copy** the updated JSON text by clicking the copy JSON button
+- Then:
+  - Go to your Gitub repository
+  - Click <>Code to get back to your file system
+  - Click `feeds.json` in your repository file listing
+  - Click the ✏️ **edit button**.
+  - Delete all content in that file
+  - Paste your updated feeds.json
+  - Click `Commit changes...` green button.
+
+✅ Now you control exactly what news you see!
+
+💡 Looking for news sources?
+* use advance search keyword `feeds:` in Bing Search [example](https://www.bing.com/search?q=feed%3A+%22technology)
+* [Google News](https://news.google.com). Run your search then in the URL add `rss/` after the google.com. Use that URL as your RSS source URL.
+* run a basic Google search for 'RSS news feeds'
+
+---
+
 ### 4. How Updates Work
 
-- Every morning at **6AM AEST (Australia Eastern Standard Time)**,
-  GitHub Actions will automatically update your news feed.
+- Every day 8pm UTC GitHub Actions will automatically update your news feed.
 - You don't need to do anything — it refreshes itself!
 - Note: if you wish to update outside of this schedule got to Actions (top menu) > "Update News Feed Daily" (left menu) > Run workflow dropdown (right side) > Run workflow.
 
@@ -110,7 +124,7 @@ Just GitHub + RSS!
 
 ## ⚙️ How It Works (Under the Hood)
 
-- `main.py` pulls articles from your selected RSS feeds using Python and `feedparser`.
+- `main.py` pulls articles from your configured RSS feed sources in `feeds.json` using Python and `feedparser`.
 - It generates an `index.html` page listing all articles.
 - A GitHub Actions workflow (`update_feed.yml`) runs `main.py` automatically every day.
 - Changes are committed back to your repository if anything new appears.
@@ -121,8 +135,7 @@ Just GitHub + RSS!
 ## 💡 Tips
 
 - Bookmark your feed with customised filters (source selection, keywords, time range) — they are saved in the URL!
-- Add niche topics (e.g., science, regional news, personal interests).
-- Remove or add feeds anytime by editing `feeds.json`.
+- Remove or add feeds anytime by editing `feeds.json` and then running the workflow in the Actions section (or wait 24 hours for the scheduler to activate)
 
 ---
 
@@ -167,7 +180,6 @@ c. While on your resulting Google News search page, click the bookmarklet. It wi
 
 ## 📚 Need Help?
 
-- Check the About page on your news feed site.
 - Open an Issue in this repository if you get stuck.
 - Explore GitHub documentation if you're completely new!
 
@@ -175,8 +187,7 @@ c. While on your resulting Google News search page, click the bookmarklet. It wi
 
 ## 🤔 Why This Project?
 
-Today’s news feeds are cluttered and controlled by algorithms.  
-**This project lets you take back control.**  
+Getting news feeds via email clutters my inbox.
 Select only the topics and sources you trust.  
 No ads. No tracking. Just the news you want, updated daily.
 
