@@ -34,11 +34,11 @@ jobs:
         working-directory: ./src
         run: python main.py
 
-      - name: Copy public files
+      - name: Prepare site for deployment
         run: |
-          mkdir -p ./public
-          cp index.html ./public/
-          cp config.html ./public/
+          mkdir -p public
+          cp index.html public/
+          cp config.html public/
 
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v2
@@ -46,7 +46,7 @@ jobs:
           path: ./public
 
   deploy:
-    needs: update
+    needs: build
     runs-on: ubuntu-latest
     environment:
       name: github-pages
