@@ -8,6 +8,10 @@ This tool is designed for **anyone with a GitHub account**, no programming requi
 Click here to see a sample feed: [My news feed](https://technoid99.github.io/my_news_feed/index.html)
 This is the location of the original Github repository [template](https://github.com/technoid99/my_news_feed/).
 
+This repo is currently under construction. Don't copy it if the following status is not a green 'pass'
+
+[![Update News Feed Daily](https://github.com/technoid99/my_news_feed/actions/workflows/update_feed.yml/badge.svg?branch=main)](https://github.com/technoid99/my_news_feed/actions/workflows/update_feed.yml)
+
 ---
 
 ## 📌 What This Project Does
