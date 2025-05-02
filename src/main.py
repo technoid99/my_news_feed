@@ -7,7 +7,7 @@ import base64
 from datetime import datetime
 from pathlib import Path
 import sys
-from src.html_builder import build_index_html
+from html_builder import build_index_html
 
 feeds_path = Path(__file__).resolve().parent.parent / "feeds"
 # From inside src/main.py
