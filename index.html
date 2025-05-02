@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My News Feed</title>
+<style>
+  body { font-family: Arial, sans-serif; margin: 20px; background-color: #f9f9f9; }
+  h1 { margin: 0; }
+  .header-bar { display: flex; justify-content: space-between; align-items: center; }
+  .header-links a { margin-left: 15px; text-decoration: none; font-size: 0.9em; color: #007BFF; }
+  .header-links a:hover { text-decoration: underline; }
+  .source-scroll { max-height: 150px; overflow-y: auto; padding: 5px; border: 1px solid #ddd; background: #fafafa; border-radius: 4px; }
+  .generated-time { font-size: 0.8em; color: #555; margin-top: 4px; }
+  .filter-container { display: flex; gap: 40px; margin: 20px 0; background: #ffffff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
+  .filter-group { flex: 1; }
+  .filter-group label { display: block; margin-bottom: 6px; }
+  .filter-group select, .filter-group input[type="text"] { width: 80%; padding: 6px; margin-top: 6px; }
+  .button-group button { margin-right: 10px; background-color: #888888; color: white; border: none; border-radius: 4px; cursor: pointer; }
+  .button-group button:hover { background-color: #0056b3; }
+  table { border-collapse: collapse; width: 100%; background: #ffffff; border-radius: 8px; overflow: hidden; }
+  th, td { text-align: left; padding: 10px; border-bottom: 1px solid #ddd; }
+  th { background-color: #f2f2f2; cursor: pointer; }
+  .missing-date td:first-child { color: gray; }
+  #articleCount { margin: 10px 0; font-weight: bold; }
+  @keyframes fadeInModal { from { opacity: 0; transform: translate(-50%, -55%); } to { opacity: 1; transform: translate(-50%, -50%); }}
+  .table-wrapper { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; /* smooth scrolling on iOS. Makes the article table auto-scroll horizontally on small screens rather than breaking layout */ }
+
+</style>
+</head>
+<body>
+
+<div class="header-bar">
+  <div>
+    <h1>My News Feed</h1>
+    <div class="generated-time">Page generated on 02 May 2025, 13:45 UTC</div>
+  </div>
+  <div class="header-links">
+    <a href="config.html" target="_blank">Config</a>
+    <a href="#" onclick="showAbout()">About</a>
+  </div>
+</div>
+
+<div class="filter-container">
+  <div class="filter-group">
+    <strong>Filter by source:</strong><br>
+    <div class="button-group">
+      <button onclick="selectAllSources()">Select All</button>
+      <button onclick="selectNoSources()">Select None</button>
+    </div>
+    <div class="source-scroll">
+    <label><input type="checkbox" class="sourceFilter" value="JAAS1FjlOPlYRTGt9LiEocAGhCCRm-nqpIJJ2elO-qk" checked> News - Sydney Morning Herald</label><label><input type="checkbox" class="sourceFilter" value="C5NefpyOSONFKj4IEI8ojrH_dEf8wX0vOZciPSYaWww" checked> Reddit - Soccer</label><label><input type="checkbox" class="sourceFilter" value="hL9oNeY6fNKtqgqxL77LFww8FeYerJOWGi3labGoZsI" checked> 知乎日报</label><label><input type="checkbox" class="sourceFilter" value="-EGH98Uu-bNGGYJjzUbJaxispRlcW0A8PpoVWrOk0xQ" checked> TechCrunch</label><label><input type="checkbox" class="sourceFilter" value="Csf0apMvvFTQQXbCzvc5TniVVufjpOEtzpP0NwBhDVs" checked> Bing search - tsunami relief</label>
+    </div>
+  </div>
+
+  <div class="filter-group">
+    <strong>Filter by time:</strong><br>
+    <select id="timeFilter">
+      <option value="all">All time</option>
+      <option value="24h">Past 24 hours</option>
+      <option value="48h" selected>Past 48 hours</option>
+      <option value="7d">Past week</option>
+    </select>
+
+    <br><br>
+    <strong>Search titles:</strong><br>
+    <input type="text" id="searchBox" placeholder="Type keywords..." />
+  </div>
+</div>
+
+<div id="articleCount"></div>
+
+<div class="table-wrapper">
+<table id="newsTable">
+<thead>
+<tr>
+  <th onclick="sortTable(0)">Date ▲▼</th>
+  <th onclick="sortTable(1)">Source ▲▼</th>
+  <th>Title</th>
+</tr>
+</thead>
+<tbody>
+<tr class="" data-source="JAAS1FjlOPlYRTGt9LiEocAGhCCRm-nqpIJJ2elO-qk" data-date="Fri, 02 May 2025 23:28:44 +1000" data-title="AFL round eight LIVE: Saints have the last laugh as four-goal hero Sharman imitates Akermanis on an embarrassing night for Freo">
+            <td>Fri, 02 May 2025 23:28:44 +1000</td>
+            <td>News - Sydney Morning Herald</td>
+            <td><a href="https://www.smh.com.au/sport/afl/afl-round-eight-live-st-kilda-saints-fremantle-dockers-square-off-at-marvel-stadium-20250502-p5lw4e.html?ref=rss&utm_medium=rss&utm_source=rss_feed" target="_blank">AFL round eight LIVE: Saints have the last laugh as four-goal hero Sharman imitates Akermanis on an embarrassing night for Freo</a></td>
+        </tr><tr class="" data-source="JAAS1FjlOPlYRTGt9LiEocAGhCCRm-nqpIJJ2elO-qk" data-date="Fri, 02 May 2025 22:28:18 +1000" data-title="NRL Highlights: Roosters v Dolphins - Round 9">
+            <td>Fri, 02 May 2025 22:28:18 +1000</td>
+            <td>News - Sydney Morning Herald</td>
+            <td><a href="https://www.smh.com.au/sport/nrl/nrl-highlights-roosters-v-dolphins-round-9-20250502-p5lw6m.html?ref=rss&utm_medium=rss&utm_source=rss_feed" target="_blank">NRL Highlights: Roosters v Dolphins - Round 9</a></td>
+        </tr><tr class="" data-source="JAAS1FjlOPlYRTGt9LiEocAGhCCRm-nqpIJJ2elO-qk" data-date="Fri, 02 May 2025 22:18:57 +1000" data-title="Teddy reveals his Origin prediction">
+            <td>Fri, 02 May 2025 22:18:57 +1000</td>
+            <td>News - Sydney Morning Herald</td>
+            <td><a href="https://www.smh.com.au/sport/nrl/teddy-reveals-his-origin-prediction-20250502-p5lw6l.html?ref=rss&utm_medium=rss&utm_source=rss_feed" target="_blank">Teddy reveals his Origin prediction</a></td>
+        </tr><tr class="" data-source="JAAS1FjlOPlYRTGt9LiEocAGhCCRm-nqpIJJ2elO-qk" data-date="Fri, 02 May 2025 22:05:55 +1000" data-title="Roosters overcome Dolphins after losing Smith early to concussion">
+            <td>Fri, 02 May 2025 22:05:55 +1000</td>
+            <td>News - Sydney Morning Herald</td>
+            <td><a href="https://www.smh.com.au/sport/nrl/nrl-magic-round-2025-live-sharks-v-eels-roosters-v-dolphins-20250502-p5lvze.html?ref=rss&utm_medium=rss&utm_source=rss_feed" target="_blank">Roosters overcome Dolphins after losing Smith early to concussion</a></td>
+        </tr><tr class="" data-source="JAAS1FjlOPlYRTGt9LiEocAGhCCRm-nqpIJJ2elO-qk" data-date="Fri, 02 May 2025 21:43:10 +1000" data-title="Smith's brilliant act stops try">
+            <td>Fri, 02 May 2025 21:43:10 +1000</td>
+            <td>News - Sydney Morning Herald</td>
+            <td><a href="https://www.smh.com.au/sport/nrl/smiths-brilliant-act-stops-try-20250502-p5lw6j.html?ref=rss&utm_medium=rss&utm_source=rss_feed" target="_blank">Smith's brilliant act stops try</a></td>
+        </tr><tr class="" data-source="JAAS1FjlOPlYRTGt9LiEocAGhCCRm-nqpIJJ2elO-qk" data-date="Fri, 02 May 2025 21:20:33 +1000" data-title="Father of young constable killed speaks out">
+            <td>Fri, 02 May 2025 21:20:33 +1000</td>
+            <td>News - Sydney Morning Herald</td>
+            <td><a href="https://www.smh.com.au/national/father-of-young-constable-killed-speaks-out-20250502-p5lw6f.html?ref=rss&utm_medium=rss&utm_source=rss_feed" target="_blank">Father of young constable killed speaks out</a></td>
+        </tr><tr class="" data-source="JAAS1FjlOPlYRTGt9LiEocAGhCCRm-nqpIJJ2elO-qk" data-date="Fri, 02 May 2025 21:18:55 +1000" data-title="Median house prices soar to $1m in Perth">
+            <td>Fri, 02 May 2025 21:18:55 +1000</td>
+            <td>News - Sydney Morning Herald</td>
+            <td><a href="https://www.smh.com.au/national/median-house-prices-soar-to-1m-in-perth-20250502-p5lw6g.html?ref=rss&utm_medium=rss&utm_source=rss_feed" target="_blank">Median house prices soar to $1m in Perth</a></td>
+        </tr><tr class="" data-source="JAAS1FjlOPlYRTGt9LiEocAGhCCRm-nqpIJJ2elO-qk" data-date="Fri, 02 May 2025 21:18:22 +1000" data-title="Rugby convert puts ball down brilliantly">
+            <td>Fri, 02 May 2025 21:18:22 +1000</td>
+            <td>News - Sydney Morning Herald</td>
+            <td><a href="https://www.smh.com.au/sport/nrl/rugby-convert-puts-ball-down-brilliantly-20250502-p5lw6h.html?ref=rss&utm_medium=rss&utm_source=rss_feed" target="_blank">Rugby convert puts ball down brilliantly</a></td>
+        </tr><tr class="" data-source="JAAS1FjlOPlYRTGt9LiEocAGhCCRm-nqpIJJ2elO-qk" data-date="Fri, 02 May 2025 21:14:03 +1000" data-title="Hammer jumps over Teddy to score">
+            <td>Fri, 02 May 2025 21:14:03 +1000</td>
+            <td>News - Sydney Morning Herald</td>
+            <td><a href="https://www.smh.com.au/sport/nrl/hammer-jumps-over-teddy-to-score-20250502-p5lw6d.html?ref=rss&utm_medium=rss&utm_source=rss_feed" target="_blank">Hammer jumps over Teddy to score</a></td>
+        </tr><tr class="" data-source="JAAS1FjlOPlYRTGt9LiEocAGhCCRm-nqpIJJ2elO-qk" data-date="Fri, 02 May 2025 21:10:59 +1000" data-title="Hynes and Moses kickstart Magic Round in style">
+            <td>Fri, 02 May 2025 21:10:59 +1000</td>
+            <td>News - Sydney Morning Herald</td>
+            <td><a href="https://www.smh.com.au/sport/nrl/hynes-and-moses-kickstart-magic-round-in-style-20250501-p5lvvx.html?ref=rss&utm_medium=rss&utm_source=rss_feed" target="_blank">Hynes and Moses kickstart Magic Round in style</a></td>
+        </tr><tr class="" data-source="JAAS1FjlOPlYRTGt9LiEocAGhCCRm-nqpIJJ2elO-qk" data-date="Fri, 02 May 2025 21:05:41 +1000" data-title="Our favourite homes for sale in Victoria right now">
+            <td>Fri, 02 May 2025 21:05:41 +1000</td>
+            <td>News - Sydney Morning Herald</td>
+            <td><a href="https://www.smh.com.au/property/living/our-favourite-homes-for-sale-in-victoria-right-now-20250502-p5lw06.html?ref=rss&utm_medium=rss&utm_source=rss_feed" target="_blank">Our favourite homes for sale in Victoria right now</a></td>
+        </tr><tr class="" data-source="JAAS1FjlOPlYRTGt9LiEocAGhCCRm-nqpIJJ2elO-qk" data-date="Fri, 02 May 2025 20:50:12 +1000" data-title="Bunker denies epic eight-pass try">
+            <td>Fri, 02 May 2025 20:50:12 +1000</td>
+            <td>News - Sydney Morning Herald</td>
+            <td><a href="https://www.smh.com.au/sport/nrl/bunker-denies-epic-eight-pass-try-20250502-p5lw6a.html?ref=rss&utm_medium=rss&utm_source=rss_feed" target="_blank">Bunker denies epic eight-pass try</a></td>
+        </tr><tr class="" data-source="JAAS1FjlOPlYRTGt9LiEocAGhCCRm-nqpIJJ2elO-qk" data-date="Fri, 02 May 2025 20:35:05 +1000" data-title="Baby dreams left on ice over lack of sperm donor ID">
+            <td>Fri, 02 May 2025 20:35:05 +1000</td>
+            <td>News - Sydney Morning Herald</td>
+            <td><a href="https://www.smh.com.au/national/baby-dreams-left-on-ice-over-lack-of-sperm-donor-id-20250502-p5lw35.html?ref=rss&utm_medium=rss&utm_source=rss_feed" target="_blank">Baby dreams left on ice over lack of sperm donor ID</a></td>
+        </tr><tr class="" data-source="JAAS1FjlOPlYRTGt9LiEocAGhCCRm-nqpIJJ2elO-qk" data-date="Fri, 02 May 2025 20:33:45 +1000" data-title="Toia burns Dolphins stars">
+            <td>Fri, 02 May 2025 20:33:45 +1000</td>
+            <td>News - Sydney Morning Herald</td>
+            <td><a href="https://www.smh.com.au/sport/nrl/toia-burns-dolphins-stars-20250502-p5lw69.html?ref=rss&utm_medium=rss&utm_source=rss_feed" target="_blank">Toia burns Dolphins stars</a></td>
+        </tr><tr class="" data-source="JAAS1FjlOPlYRTGt9LiEocAGhCCRm-nqpIJJ2elO-qk" data-date="Fri, 02 May 2025 20:27:05 +1000" data-title="NRL Highlights: Sharks v Eels - Round 9">
+            <td>Fri, 02 May 2025 20:27:05 +1000</td>
+            <td>News - Sydney Morning Herald</td>
+            <td><a href="https://www.smh.com.au/sport/nrl/nrl-highlights-sharks-v-eels-round-9-20250502-p5lw68.html?ref=rss&utm_medium=rss&utm_source=rss_feed" target="_blank">NRL Highlights: Sharks v Eels - Round 9</a></td>
+        </tr><tr class="" data-source="JAAS1FjlOPlYRTGt9LiEocAGhCCRm-nqpIJJ2elO-qk" data-date="Fri, 02 May 2025 20:04:36 +1000" data-title="Moses argues with ref over penalty">
+            <td>Fri, 02 May 2025 20:04:36 +1000</td>
+            <td>News - Sydney Morning Herald</td>
+            <td><a href="https://www.smh.com.au/sport/nrl/moses-argues-with-ref-over-penalty-20250502-p5lw67.html?ref=rss&utm_medium=rss&utm_source=rss_feed" target="_blank">Moses argues with ref over penalty</a></td>
+        </tr><tr class="" data-source="JAAS1FjlOPlYRTGt9LiEocAGhCCRm-nqpIJJ2elO-qk" data-date="Fri, 02 May 2025 20:00:00 +1000" data-title="Seven of the best homes for sale in NSW right now">
+            <td>Fri, 02 May 2025 20:00:00 +1000</td>
+            <td>News - Sydney Morning Herald</td>
+            <td><a href="https://www.smh.com.au/property/news/seven-of-the-best-homes-for-sale-in-nsw-right-now-20250502-p5lw3b.html?ref=rss&utm_medium=rss&utm_source=rss_feed" target="_blank">Seven of the best homes for sale in NSW right now</a></td>
+        </tr><tr class="" data-source="JAAS1FjlOPlYRTGt9LiEocAGhCCRm-nqpIJJ2elO-qk" data-date="Fri, 02 May 2025 20:00:00 +1000" data-title="‘All polling booths will get a visit’: NSW Police push for calm on election day">
+            <td>Fri, 02 May 2025 20:00:00 +1000</td>
+            <td>News - Sydney Morning Herald</td>
+            <td><a href="https://www.smh.com.au/politics/nsw/all-polling-booths-will-get-a-visit-nsw-police-push-for-calm-on-election-day-20250502-p5lw4i.html?ref=rss&utm_medium=rss&utm_source=rss_feed" target="_blank">‘All polling booths will get a visit’: NSW Police push for calm on election day</a></td>
+        </tr><tr class="" data-source="JAAS1FjlOPlYRTGt9LiEocAGhCCRm-nqpIJJ2elO-qk" data-date="Fri, 02 May 2025 19:49:18 +1000" data-title="Trindall mouths off at Moses">
+            <td>Fri, 02 May 2025 19:49:18 +1000</td>
+            <td>News - Sydney Morning Herald</td>
+            <td><a href="https://www.smh.com.au/sport/nrl/trindall-mouths-off-at-moses-20250502-p5lw65.html?ref=rss&utm_medium=rss&utm_source=rss_feed" target="_blank">Trindall mouths off at Moses</a></td>
+        </tr><tr class="" data-source="JAAS1FjlOPlYRTGt9LiEocAGhCCRm-nqpIJJ2elO-qk" data-date="Fri, 02 May 2025 19:45:00 +1000" data-title="Albanese starting to plan for a third-term Labor government">
+            <td>Fri, 02 May 2025 19:45:00 +1000</td>
+            <td>News - Sydney Morning Herald</td>
+            <td><a href="https://www.smh.com.au/politics/federal/albanese-starting-to-plan-for-a-third-term-labor-government-20250502-p5lw44.html?ref=rss&utm_medium=rss&utm_source=rss_feed" target="_blank">Albanese starting to plan for a third-term Labor government</a></td>
+        </tr><tr class="" data-source="hL9oNeY6fNKtqgqxL77LFww8FeYerJOWGi3labGoZsI" data-date="Thu, 01 May 2025 19:05:01 -0400" data-title="一直有个疑惑：古人为什么不从左往右写字？">
+            <td>Thu, 01 May 2025 19:05:01 -0400</td>
+            <td>知乎日报</td>
+            <td><a href="https://rsseverything.com/feed/490.xml#section_head" target="_self" title="回到顶部" class="back-to-top"></a><div class="header navbar-fixed-top"><div class="container-fixed-width clearfix"><div class="top-nav-link"><a href="#section_head" target="_self" data-offset="470"><span>浏览内容</span></a><a href="http://www.wandoujia.com/apps/com.zhihu.daily.android" data-offset="0" class="active"><span>App 下载</span></a></div><h1 class="logo"><a href="http://daily.zhihu.com/" title="知乎日报" class="link-logo">知乎日报</a></h1></div></div><div class="download"><div class="container-fixed-width"><div class="sample-wrap"><img src="https://daily.zhihu.com/img/new_home_v3/phone_sample.png" alt="知乎日报应用截屏" class="sample"></div><div class="inner"><h2>每天三次 每次七分钟</h2><div class="info">在中国，资讯类移动应用的人均阅读时长是 5 分钟，而在知乎日报，这个数字是 21。</div><div class="qr-top"><img src="https://daily.zhihu.com/img/new_home_v3/qr_top2.png"></div><div class="link-buttons"><ul class="donwload-links"><li><a href="https://itunes.apple.com/cn/app/id639087967?mt=8" title="前往 App Store 下载" data-device="iOS" class="iphone"><i class="icon"></i><span>iOS 版</span></a></li><li class="with-drop-menu"><a href="http://www.wandoujia.com/apps/com.zhihu.daily.android" title="通过豌豆荚下载" name="知乎日报" onclick="return wdapi_apkdl_m(this, 'source');" data-device="android-wandoujia" class="wandoujia"><i class="icon"></i><span>豌豆荚</span></a></li></ul></div></div></div></div><div class="main-content"><div class="container-fixed-width"><div class="section-head"><div class="tip">最新内容</div><div class="section-head-title" id="section_head">浏览内容</div></div><div class="main-content-wrap"><div class="row"><div class="col-lg-4"><div class="wrap"><div class="box"><a href="https://daily.zhihu.com/story/9780866" target="_blank">一直有个疑惑：古人为什么不从左往右写字？</a></td>
+        </tr><tr class="" data-source="hL9oNeY6fNKtqgqxL77LFww8FeYerJOWGi3labGoZsI" data-date="Thu, 01 May 2025 19:04:56 -0400" data-title="为什么在鸡鸭鹅蛋里只有鹅蛋很少有人吃？">
+            <td>Thu, 01 May 2025 19:04:56 -0400</td>
+            <td>知乎日报</td>
+            <td><a href="https://daily.zhihu.com/story/9780861" target="_blank">为什么在鸡鸭鹅蛋里只有鹅蛋很少有人吃？</a></td>
+        </tr><tr class="" data-source="hL9oNeY6fNKtqgqxL77LFww8FeYerJOWGi3labGoZsI" data-date="Thu, 01 May 2025 19:04:51 -0400" data-title="是否该让孩子接触带有悲剧色彩的名著？">
+            <td>Thu, 01 May 2025 19:04:51 -0400</td>
+            <td>知乎日报</td>
+            <td><a href="https://daily.zhihu.com/story/9780860" target="_blank">是否该让孩子接触带有悲剧色彩的名著？</a></td>
+        </tr><tr class="" data-source="hL9oNeY6fNKtqgqxL77LFww8FeYerJOWGi3labGoZsI" data-date="Thu, 01 May 2025 19:04:42 -0400" data-title="古代科举有哪些独特的防作弊手段？">
+            <td>Thu, 01 May 2025 19:04:42 -0400</td>
+            <td>知乎日报</td>
+            <td><a href="https://daily.zhihu.com/story/9780854" target="_blank">古代科举有哪些独特的防作弊手段？</a></td>
+        </tr><tr class="" data-source="hL9oNeY6fNKtqgqxL77LFww8FeYerJOWGi3labGoZsI" data-date="Wed, 30 Apr 2025 19:15:36 -0400" data-title="地球上还有原始人吗？">
+            <td>Wed, 30 Apr 2025 19:15:36 -0400</td>
+            <td>知乎日报</td>
+            <td><a href="https://daily.zhihu.com/story/9780841" target="_blank">地球上还有原始人吗？</a></td>
+        </tr><tr class="" data-source="hL9oNeY6fNKtqgqxL77LFww8FeYerJOWGi3labGoZsI" data-date="Wed, 30 Apr 2025 19:15:28 -0400" data-title="为什么章鱼会有将寿命限制仅几年的基因锁，为何限制如此之短，若无此锁，章鱼是否真会代替人类成地球霸主？">
+            <td>Wed, 30 Apr 2025 19:15:28 -0400</td>
+            <td>知乎日报</td>
+            <td><a href="https://daily.zhihu.com/story/9780849" target="_blank">为什么章鱼会有将寿命限制仅几年的基因锁，为何限制如此之短，若无此锁，章鱼是否真会代替人类成地球霸主？</a></td>
+        </tr><tr class="" data-source="hL9oNeY6fNKtqgqxL77LFww8FeYerJOWGi3labGoZsI" data-date="Wed, 30 Apr 2025 19:15:26 -0400" data-title="鸟类为什么天生会筑巢？">
+            <td>Wed, 30 Apr 2025 19:15:26 -0400</td>
+            <td>知乎日报</td>
+            <td><a href="https://daily.zhihu.com/story/9780836" target="_blank">鸟类为什么天生会筑巢？</a></td>
+        </tr><tr class="" data-source="hL9oNeY6fNKtqgqxL77LFww8FeYerJOWGi3labGoZsI" data-date="Wed, 30 Apr 2025 19:15:18 -0400" data-title="蚂蚁为什么要搬家？">
+            <td>Wed, 30 Apr 2025 19:15:18 -0400</td>
+            <td>知乎日报</td>
+            <td><a href="https://daily.zhihu.com/story/9780831" target="_blank">蚂蚁为什么要搬家？</a></td>
+        </tr><tr class="" data-source="hL9oNeY6fNKtqgqxL77LFww8FeYerJOWGi3labGoZsI" data-date="Tue, 29 Apr 2025 19:33:21 -0400" data-title="历史上有哪些经典的食物组合？">
+            <td>Tue, 29 Apr 2025 19:33:21 -0400</td>
+            <td>知乎日报</td>
+            <td><a href="https://daily.zhihu.com/story/9780825" target="_blank">历史上有哪些经典的食物组合？</a></td>
+        </tr><tr class="" data-source="hL9oNeY6fNKtqgqxL77LFww8FeYerJOWGi3labGoZsI" data-date="Tue, 29 Apr 2025 19:00:42 -0400" data-title="从生物学的角度，人首蛇身这种形态能生存吗？">
+            <td>Tue, 29 Apr 2025 19:00:42 -0400</td>
+            <td>知乎日报</td>
+            <td><a href="https://daily.zhihu.com/story/9780822" target="_blank">从生物学的角度，人首蛇身这种形态能生存吗？</a></td>
+        </tr><tr class="" data-source="hL9oNeY6fNKtqgqxL77LFww8FeYerJOWGi3labGoZsI" data-date="Tue, 29 Apr 2025 19:00:36 -0400" data-title="石头甚至不能降解，为什么不如塑料危害性大？">
+            <td>Tue, 29 Apr 2025 19:00:36 -0400</td>
+            <td>知乎日报</td>
+            <td><a href="https://daily.zhihu.com/story/9780820" target="_blank">石头甚至不能降解，为什么不如塑料危害性大？</a></td>
+        </tr><tr class="" data-source="hL9oNeY6fNKtqgqxL77LFww8FeYerJOWGi3labGoZsI" data-date="Tue, 29 Apr 2025 19:00:27 -0400" data-title="瞎扯 · 如何正确地吐槽">
+            <td>Tue, 29 Apr 2025 19:00:27 -0400</td>
+            <td>知乎日报</td>
+            <td><a href="https://daily.zhihu.com/story/9780829" target="_blank">瞎扯 · 如何正确地吐槽</a></td>
+        </tr><tr class="" data-source="hL9oNeY6fNKtqgqxL77LFww8FeYerJOWGi3labGoZsI" data-date="Mon, 28 Apr 2025 19:08:33 -0400" data-title="动物的眼睛所看到的，和人类的眼睛所看到的，是一样的吗?">
+            <td>Mon, 28 Apr 2025 19:08:33 -0400</td>
+            <td>知乎日报</td>
+            <td><a href="https://daily.zhihu.com/story/9780803" target="_blank">动物的眼睛所看到的，和人类的眼睛所看到的，是一样的吗?</a></td>
+        </tr><tr class="" data-source="hL9oNeY6fNKtqgqxL77LFww8FeYerJOWGi3labGoZsI" data-date="Mon, 28 Apr 2025 19:04:59 -0400" data-title="造纸术难在哪里，为什么到汉朝才被发明？">
+            <td>Mon, 28 Apr 2025 19:04:59 -0400</td>
+            <td>知乎日报</td>
+            <td><a href="https://daily.zhihu.com/story/9780799" target="_blank">造纸术难在哪里，为什么到汉朝才被发明？</a></td>
+        </tr><tr class="" data-source="hL9oNeY6fNKtqgqxL77LFww8FeYerJOWGi3labGoZsI" data-date="Mon, 28 Apr 2025 19:04:56 -0400" data-title="为什么赵云一定要加「常山」两个字？">
+            <td>Mon, 28 Apr 2025 19:04:56 -0400</td>
+            <td>知乎日报</td>
+            <td><a href="https://daily.zhihu.com/story/9780792" target="_blank">为什么赵云一定要加「常山」两个字？</a></td>
+        </tr><tr class="" data-source="hL9oNeY6fNKtqgqxL77LFww8FeYerJOWGi3labGoZsI" data-date="Mon, 28 Apr 2025 19:04:46 -0400" data-title="瞎扯 · 如何正确地吐槽">
+            <td>Mon, 28 Apr 2025 19:04:46 -0400</td>
+            <td>知乎日报</td>
+            <td><a href="https://daily.zhihu.com/story/9780813" target="_blank">瞎扯 · 如何正确地吐槽</a></td>
+        </tr><tr class="" data-source="hL9oNeY6fNKtqgqxL77LFww8FeYerJOWGi3labGoZsI" data-date="Sun, 27 Apr 2025 19:02:32 -0400" data-title="石头缝里都能长树，为什么草原不长树？">
+            <td>Sun, 27 Apr 2025 19:02:32 -0400</td>
+            <td>知乎日报</td>
+            <td><a href="https://daily.zhihu.com/story/9780783" target="_blank">石头缝里都能长树，为什么草原不长树？</a></td>
+        </tr><tr class="" data-source="hL9oNeY6fNKtqgqxL77LFww8FeYerJOWGi3labGoZsI" data-date="Sun, 27 Apr 2025 19:02:23 -0400" data-title="为什么会有卖活蟑螂的？或者说，买蟑螂能用来干什么？">
+            <td>Sun, 27 Apr 2025 19:02:23 -0400</td>
+            <td>知乎日报</td>
+            <td><a href="https://daily.zhihu.com/story/9780775" target="_blank">为什么会有卖活蟑螂的？或者说，买蟑螂能用来干什么？</a></td>
+        </tr><tr class="" data-source="hL9oNeY6fNKtqgqxL77LFww8FeYerJOWGi3labGoZsI" data-date="Sun, 27 Apr 2025 19:02:20 -0400" data-title="为什么四大家鱼是青草鲢鳙，而没有鲫鱼和鲤鱼？">
+            <td>Sun, 27 Apr 2025 19:02:20 -0400</td>
+            <td>知乎日报</td>
+            <td><a href="https://daily.zhihu.com/story/9780772" target="_blank">为什么四大家鱼是青草鲢鳙，而没有鲫鱼和鲤鱼？</a></td>
+        </tr><tr class="" data-source="hL9oNeY6fNKtqgqxL77LFww8FeYerJOWGi3labGoZsI" data-date="Sun, 27 Apr 2025 19:02:16 -0400" data-title="瞎扯 · 如何正确地吐槽">
+            <td>Sun, 27 Apr 2025 19:02:16 -0400</td>
+            <td>知乎日报</td>
+            <td><a href="https://daily.zhihu.com/story/9780781" target="_blank">瞎扯 · 如何正确地吐槽</a></td>
+        </tr><tr class="" data-source="hL9oNeY6fNKtqgqxL77LFww8FeYerJOWGi3labGoZsI" data-date="Sat, 26 Apr 2025 19:14:59 -0400" data-title="为什么感觉高压锅炖出来的排骨没有肉味，而且味道有点淡不太好吃？">
+            <td>Sat, 26 Apr 2025 19:14:59 -0400</td>
+            <td>知乎日报</td>
+            <td><a href="https://daily.zhihu.com/story/9780765" target="_blank">为什么感觉高压锅炖出来的排骨没有肉味，而且味道有点淡不太好吃？</a></td>
+        </tr><tr class="" data-source="hL9oNeY6fNKtqgqxL77LFww8FeYerJOWGi3labGoZsI" data-date="Sat, 26 Apr 2025 19:01:00 -0400" data-title="为什么中国人在春天都讲究「吃头茬」，这个头茬具体指什么？后面再长出来的食物和头茬会有很大区别吗？">
+            <td>Sat, 26 Apr 2025 19:01:00 -0400</td>
+            <td>知乎日报</td>
+            <td><a href="https://daily.zhihu.com/story/9780753" target="_blank">为什么中国人在春天都讲究「吃头茬」，这个头茬具体指什么？后面再长出来的食物和头茬会有很大区别吗？</a></td>
+        </tr><tr class="" data-source="hL9oNeY6fNKtqgqxL77LFww8FeYerJOWGi3labGoZsI" data-date="Sat, 26 Apr 2025 19:00:58 -0400" data-title="有哪些化学上的事实，没有一定化学知识的人不会相信？">
+            <td>Sat, 26 Apr 2025 19:00:58 -0400</td>
+            <td>知乎日报</td>
+            <td><a href="https://daily.zhihu.com/story/9780744" target="_blank">有哪些化学上的事实，没有一定化学知识的人不会相信？</a></td>
+        </tr><tr class="" data-source="hL9oNeY6fNKtqgqxL77LFww8FeYerJOWGi3labGoZsI" data-date="Sat, 26 Apr 2025 19:00:50 -0400" data-title="瞎扯 · 如何正确地吐槽">
+            <td>Sat, 26 Apr 2025 19:00:50 -0400</td>
+            <td>知乎日报</td>
+            <td><a href="https://daily.zhihu.com/story/9780757" target="_blank">瞎扯 · 如何正确地吐槽</a></td>
+        </tr><tr class="" data-source="hL9oNeY6fNKtqgqxL77LFww8FeYerJOWGi3labGoZsI" data-date="Fri, 25 Apr 2025 19:03:23 -0400" data-title="眼镜没发明出来之前，眼镜蛇叫什么？">
+            <td>Fri, 25 Apr 2025 19:03:23 -0400</td>
+            <td>知乎日报</td>
+            <td><a href="https://daily.zhihu.com/story/9780735" target="_blank">眼镜没发明出来之前，眼镜蛇叫什么？</a></td>
+        </tr><tr class="" data-source="hL9oNeY6fNKtqgqxL77LFww8FeYerJOWGi3labGoZsI" data-date="Fri, 25 Apr 2025 19:03:16 -0400" data-title="为什么地壳深度越深温度越高，但是海洋深度越深温度越低，两者恰恰相反？">
+            <td>Fri, 25 Apr 2025 19:03:16 -0400</td>
+            <td>知乎日报</td>
+            <td><a href="https://daily.zhihu.com/story/9780727" target="_blank">为什么地壳深度越深温度越高，但是海洋深度越深温度越低，两者恰恰相反？</a></td>
+        </tr><tr class="" data-source="hL9oNeY6fNKtqgqxL77LFww8FeYerJOWGi3labGoZsI" data-date="Fri, 25 Apr 2025 19:03:11 -0400" data-title="在牛顿以前这几十万年来就没有一个人思考过物体为什么会往下掉吗？">
+            <td>Fri, 25 Apr 2025 19:03:11 -0400</td>
+            <td>知乎日报</td>
+            <td><a href="https://daily.zhihu.com/story/9780719" target="_blank">在牛顿以前这几十万年来就没有一个人思考过物体为什么会往下掉吗？</a></td>
+        </tr><tr class="" data-source="hL9oNeY6fNKtqgqxL77LFww8FeYerJOWGi3labGoZsI" data-date="Fri, 25 Apr 2025 19:03:03 -0400" data-title="老虎、狮子、豹子等猛兽为什么没有被驯化为骑兵坐骑？">
+            <td>Fri, 25 Apr 2025 19:03:03 -0400</td>
+            <td>知乎日报</td>
+            <td><a href="https://daily.zhihu.com/story/9780712" target="_blank">老虎、狮子、豹子等猛兽为什么没有被驯化为骑兵坐骑？</a></td>
+        </tr><tr class="" data-source="hL9oNeY6fNKtqgqxL77LFww8FeYerJOWGi3labGoZsI" data-date="Thu, 24 Apr 2025 19:31:05 -0400" data-title="训练一个由骨架输出动物外貌的大模型，是不是就能完美还原恐龙了?">
+            <td>Thu, 24 Apr 2025 19:31:05 -0400</td>
+            <td>知乎日报</td>
+            <td><a href="https://daily.zhihu.com/story/9780684" target="_blank">训练一个由骨架输出动物外貌的大模型，是不是就能完美还原恐龙了?</a></td>
+        </tr><tr class="" data-source="hL9oNeY6fNKtqgqxL77LFww8FeYerJOWGi3labGoZsI" data-date="Thu, 24 Apr 2025 19:00:55 -0400" data-title="小时候小霸王游戏机里玩哪些游戏是无法通关的？">
+            <td>Thu, 24 Apr 2025 19:00:55 -0400</td>
+            <td>知乎日报</td>
+            <td><a href="https://daily.zhihu.com/story/9780695" target="_blank">小时候小霸王游戏机里玩哪些游戏是无法通关的？</a></td>
+        </tr><tr class="" data-source="-EGH98Uu-bNGGYJjzUbJaxispRlcW0A8PpoVWrOk0xQ" data-date="Fri, 02 May 2025 12:41:48 +0000" data-title="Airbnb is quietly rolling out an AI customer service bot in the US">
+            <td>Fri, 02 May 2025 12:41:48 +0000</td>
+            <td>TechCrunch</td>
+            <td><a href="https://techcrunch.com/2025/05/02/airbnb-is-quietly-rolling-out-an-ai-customer-service-bot-in-the-us/" target="_blank">Airbnb is quietly rolling out an AI customer service bot in the US</a></td>
+        </tr><tr class="" data-source="-EGH98Uu-bNGGYJjzUbJaxispRlcW0A8PpoVWrOk0xQ" data-date="Fri, 02 May 2025 08:55:29 +0000" data-title="Apple changes US App Store rules to let apps link to external payment systems">
+            <td>Fri, 02 May 2025 08:55:29 +0000</td>
+            <td>TechCrunch</td>
+            <td><a href="https://techcrunch.com/2025/05/02/apple-changes-us-app-store-rules-to-let-apps-redirect-users-to-their-own-websites-for-payments/" target="_blank">Apple changes US App Store rules to let apps link to external payment systems</a></td>
+        </tr><tr class="" data-source="-EGH98Uu-bNGGYJjzUbJaxispRlcW0A8PpoVWrOk0xQ" data-date="Thu, 01 May 2025 23:04:55 +0000" data-title="Amazon CEO says 100,000 users now have Alexa+">
+            <td>Thu, 01 May 2025 23:04:55 +0000</td>
+            <td>TechCrunch</td>
+            <td><a href="https://techcrunch.com/2025/05/01/amazon-ceo-says-100000-users-now-have-alexa/" target="_blank">Amazon CEO says 100,000 users now have Alexa+</a></td>
+        </tr><tr class="" data-source="-EGH98Uu-bNGGYJjzUbJaxispRlcW0A8PpoVWrOk0xQ" data-date="Thu, 01 May 2025 23:00:23 +0000" data-title="Reddit’s AI play is for the Google crowd, not just the community scrollers">
+            <td>Thu, 01 May 2025 23:00:23 +0000</td>
+            <td>TechCrunch</td>
+            <td><a href="https://techcrunch.com/2025/05/01/reddits-ai-play-is-for-the-google-crowd-not-just-the-community-scrollers/" target="_blank">Reddit’s AI play is for the Google crowd, not just the community scrollers</a></td>
+        </tr><tr class="" data-source="-EGH98Uu-bNGGYJjzUbJaxispRlcW0A8PpoVWrOk0xQ" data-date="Thu, 01 May 2025 22:58:20 +0000" data-title="Despite paying $900M in tariffs, Apple’s Tim Cook isn’t announcing price increases — yet">
+            <td>Thu, 01 May 2025 22:58:20 +0000</td>
+            <td>TechCrunch</td>
+            <td><a href="https://techcrunch.com/2025/05/01/despite-paying-900m-in-tariffs-apples-tim-cook-isnt-announcing-price-increases-yet/" target="_blank">Despite paying $900M in tariffs, Apple’s Tim Cook isn’t announcing price increases — yet</a></td>
+        </tr><tr class="" data-source="-EGH98Uu-bNGGYJjzUbJaxispRlcW0A8PpoVWrOk0xQ" data-date="Thu, 01 May 2025 21:46:29 +0000" data-title="Apple CEO Tim Cook says tariffs to add $900M in costs in Q3, but future uncertain">
+            <td>Thu, 01 May 2025 21:46:29 +0000</td>
+            <td>TechCrunch</td>
+            <td><a href="https://techcrunch.com/2025/05/01/apple-ceo-tim-cook-says-tariffs-to-add-900m-in-costs-in-q3/" target="_blank">Apple CEO Tim Cook says tariffs to add $900M in costs in Q3, but future uncertain</a></td>
+        </tr><tr class="" data-source="-EGH98Uu-bNGGYJjzUbJaxispRlcW0A8PpoVWrOk0xQ" data-date="Thu, 01 May 2025 20:53:52 +0000" data-title="Peacock trained TikTokers to make content, and now four creators are getting original series">
+            <td>Thu, 01 May 2025 20:53:52 +0000</td>
+            <td>TechCrunch</td>
+            <td><a href="https://techcrunch.com/2025/05/01/peacock-trained-tiktokers-to-make-content-and-now-four-creators-are-getting-original-series/" target="_blank">Peacock trained TikTokers to make content, and now four creators are getting original series</a></td>
+        </tr><tr class="" data-source="-EGH98Uu-bNGGYJjzUbJaxispRlcW0A8PpoVWrOk0xQ" data-date="Thu, 01 May 2025 20:44:43 +0000" data-title="Rising star defense tech startup Mach Industries is raising $100 million, sources say">
+            <td>Thu, 01 May 2025 20:44:43 +0000</td>
+            <td>TechCrunch</td>
+            <td><a href="https://techcrunch.com/2025/05/01/rising-star-defense-tech-startup-mach-industries-is-raising-100-million-sources-say/" target="_blank">Rising star defense tech startup Mach Industries is raising $100 million, sources say</a></td>
+        </tr><tr class="" data-source="-EGH98Uu-bNGGYJjzUbJaxispRlcW0A8PpoVWrOk0xQ" data-date="Thu, 01 May 2025 20:31:18 +0000" data-title="Stripe shows iOS developers how to avoid Apple’s App Store commission">
+            <td>Thu, 01 May 2025 20:31:18 +0000</td>
+            <td>TechCrunch</td>
+            <td><a href="https://techcrunch.com/2025/05/01/stripe-shows-ios-developers-how-to-avoid-apples-app-store-commission/" target="_blank">Stripe shows iOS developers how to avoid Apple’s App Store commission</a></td>
+        </tr><tr class="" data-source="-EGH98Uu-bNGGYJjzUbJaxispRlcW0A8PpoVWrOk0xQ" data-date="Thu, 01 May 2025 20:27:25 +0000" data-title="Buzzy investing app Dub lands $30M Series A">
+            <td>Thu, 01 May 2025 20:27:25 +0000</td>
+            <td>TechCrunch</td>
+            <td><a href="https://techcrunch.com/2025/05/01/buzzy-investing-app-dub-lands-30m-series-a/" target="_blank">Buzzy investing app Dub lands $30M Series A</a></td>
+        </tr><tr class="" data-source="-EGH98Uu-bNGGYJjzUbJaxispRlcW0A8PpoVWrOk0xQ" data-date="Thu, 01 May 2025 20:16:33 +0000" data-title="FutureHouse releases AI tools it claims can accelerate science">
+            <td>Thu, 01 May 2025 20:16:33 +0000</td>
+            <td>TechCrunch</td>
+            <td><a href="https://techcrunch.com/2025/05/01/futurehouse-releases-ai-tools-it-claims-can-accelerate-science/" target="_blank">FutureHouse releases AI tools it claims can accelerate science</a></td>
+        </tr><tr class="" data-source="-EGH98Uu-bNGGYJjzUbJaxispRlcW0A8PpoVWrOk0xQ" data-date="Thu, 01 May 2025 19:19:08 +0000" data-title="Fintech Bench conducts layoff while others still work month-to-month">
+            <td>Thu, 01 May 2025 19:19:08 +0000</td>
+            <td>TechCrunch</td>
+            <td><a href="https://techcrunch.com/2025/05/01/fintech-bench-conducts-layoff-while-others-still-work-month-to-month/" target="_blank">Fintech Bench conducts layoff while others still work month-to-month</a></td>
+        </tr><tr class="" data-source="-EGH98Uu-bNGGYJjzUbJaxispRlcW0A8PpoVWrOk0xQ" data-date="Thu, 01 May 2025 18:29:58 +0000" data-title="Ai2’s new small AI model outperforms similarly-sized models from Google, Meta">
+            <td>Thu, 01 May 2025 18:29:58 +0000</td>
+            <td>TechCrunch</td>
+            <td><a href="https://techcrunch.com/2025/05/01/ai2s-new-small-ai-model-outperforms-similarly-sized-models-from-google-meta/" target="_blank">Ai2’s new small AI model outperforms similarly-sized models from Google, Meta</a></td>
+        </tr><tr class="" data-source="-EGH98Uu-bNGGYJjzUbJaxispRlcW0A8PpoVWrOk0xQ" data-date="Thu, 01 May 2025 17:46:40 +0000" data-title="Nvidia takes aim at Anthropic’s support of chip export controls">
+            <td>Thu, 01 May 2025 17:46:40 +0000</td>
+            <td>TechCrunch</td>
+            <td><a href="https://techcrunch.com/2025/05/01/nvidia-takes-aim-at-anthropics-support-of-chip-export-controls/" target="_blank">Nvidia takes aim at Anthropic’s support of chip export controls</a></td>
+        </tr><tr class="" data-source="-EGH98Uu-bNGGYJjzUbJaxispRlcW0A8PpoVWrOk0xQ" data-date="Thu, 01 May 2025 17:00:00 +0000" data-title="May Mobility to launch robotaxis on Uber platform this year in Texas">
+            <td>Thu, 01 May 2025 17:00:00 +0000</td>
+            <td>TechCrunch</td>
+            <td><a href="https://techcrunch.com/2025/05/01/may-mobility-to-launch-robotaxis-on-uber-platform-this-year-in-texas/" target="_blank">May Mobility to launch robotaxis on Uber platform this year in Texas</a></td>
+        </tr><tr class="" data-source="-EGH98Uu-bNGGYJjzUbJaxispRlcW0A8PpoVWrOk0xQ" data-date="Thu, 01 May 2025 16:50:13 +0000" data-title="Epic Games is launching webshops to allow developers to circumvent app store fees after new ruling">
+            <td>Thu, 01 May 2025 16:50:13 +0000</td>
+            <td>TechCrunch</td>
+            <td><a href="https://techcrunch.com/2025/05/01/epic-games-is-launching-webshops-to-allow-developers-to-circumvent-app-store-fees-after-new-ruling/" target="_blank">Epic Games is launching webshops to allow developers to circumvent app store fees after new ruling</a></td>
+        </tr><tr class="" data-source="-EGH98Uu-bNGGYJjzUbJaxispRlcW0A8PpoVWrOk0xQ" data-date="Thu, 01 May 2025 16:48:23 +0000" data-title="Anthropic lets users connect more apps to Claude">
+            <td>Thu, 01 May 2025 16:48:23 +0000</td>
+            <td>TechCrunch</td>
+            <td><a href="https://techcrunch.com/2025/05/01/anthropic-lets-you-connect-apps-to-claude/" target="_blank">Anthropic lets users connect more apps to Claude</a></td>
+        </tr><tr class="" data-source="-EGH98Uu-bNGGYJjzUbJaxispRlcW0A8PpoVWrOk0xQ" data-date="Thu, 01 May 2025 16:30:00 +0000" data-title="Fivetran acquires Census to become end-to-end data movement platform">
+            <td>Thu, 01 May 2025 16:30:00 +0000</td>
+            <td>TechCrunch</td>
+            <td><a href="https://techcrunch.com/2025/05/01/fivetran-acquires-census-to-become-end-to-end-data-movement-platform/" target="_blank">Fivetran acquires Census to become end-to-end data movement platform</a></td>
+        </tr><tr class="" data-source="-EGH98Uu-bNGGYJjzUbJaxispRlcW0A8PpoVWrOk0xQ" data-date="Thu, 01 May 2025 16:05:45 +0000" data-title="Read the juiciest bits from the Apple-Epic court ruling">
+            <td>Thu, 01 May 2025 16:05:45 +0000</td>
+            <td>TechCrunch</td>
+            <td><a href="https://techcrunch.com/2025/05/01/read-the-juiciest-bits-from-the-apple-epic-court-ruling/" target="_blank">Read the juiciest bits from the Apple-Epic court ruling</a></td>
+        </tr><tr class="" data-source="-EGH98Uu-bNGGYJjzUbJaxispRlcW0A8PpoVWrOk0xQ" data-date="Thu, 01 May 2025 16:00:00 +0000" data-title="Google’s AI Mode gets expanded access and additional functionality">
+            <td>Thu, 01 May 2025 16:00:00 +0000</td>
+            <td>TechCrunch</td>
+            <td><a href="https://techcrunch.com/2025/05/01/googles-ai-mode-gets-expanded-access-and-additional-functionality/" target="_blank">Google’s AI Mode gets expanded access and additional functionality</a></td>
+        </tr><tr class="" data-source="Csf0apMvvFTQQXbCzvc5TniVVufjpOEtzpP0NwBhDVs" data-date="Fri, 18 Mar 2011 02:49:00 GMT" data-title="Lessons for Japan in 2004 Tsunami">
+            <td>Fri, 18 Mar 2011 02:49:00 GMT</td>
+            <td>Bing search - tsunami relief</td>
+            <td><a href="http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6814cc86ba32436a8bee31f658213461&url=https%3a%2f%2fwww.cfr.org%2fexpert-brief%2flessons-japan-2004-tsunami&c=11504745792184202255&mkt=en-us" target="_blank">Lessons for Japan in 2004 Tsunami</a></td>
+        </tr><tr class="" data-source="Csf0apMvvFTQQXbCzvc5TniVVufjpOEtzpP0NwBhDVs" data-date="Tue, 08 Apr 2025 10:48:00 GMT" data-title="World's largest earthquake in two years hits Caribbean islands as tsunami warning issued">
+            <td>Tue, 08 Apr 2025 10:48:00 GMT</td>
+            <td>Bing search - tsunami relief</td>
+            <td><a href="http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6814cc86ba32436a8bee31f658213461&url=https%3a%2f%2fwww.msn.com%2fen-us%2fweather%2ftopstories%2fcontact%2520info%2520for%2520world-s-largest-earthquake-in-two-years-hits-caribbean-islands-as-tsunami-warning-issued%2far-AA1yFE3y&c=14309391076736355493&mkt=en-us" target="_blank">World's largest earthquake in two years hits Caribbean islands as tsunami warning issued</a></td>
+        </tr><tr class="" data-source="Csf0apMvvFTQQXbCzvc5TniVVufjpOEtzpP0NwBhDVs" data-date="Mon, 02 Jul 2018 13:19:00 GMT" data-title="Wave of the Future">
+            <td>Mon, 02 Jul 2018 13:19:00 GMT</td>
+            <td>Bing search - tsunami relief</td>
+            <td><a href="http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6814cc86ba32436a8bee31f658213461&url=https%3a%2f%2fwww.pbs.org%2fwgbh%2fnova%2ftsunami%2fwave.html&c=6651182929153894869&mkt=en-us" target="_blank">Wave of the Future</a></td>
+        </tr><tr class="" data-source="Csf0apMvvFTQQXbCzvc5TniVVufjpOEtzpP0NwBhDVs" data-date="Tue, 04 Jul 2023 05:48:00 GMT" data-title="Songs for Tsunami Relief Austin to South Asia">
+            <td>Tue, 04 Jul 2023 05:48:00 GMT</td>
+            <td>Bing search - tsunami relief</td>
+            <td><a href="http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6814cc86ba32436a8bee31f658213461&url=https%3a%2f%2fwww.moviefone.com%2fmovie%2fsongs-for-tsunami-relief-austin-to-south-asia%2fhD4rt9kXttYhQWDL66OIv1%2fmain%2f&c=16777407981345204589&mkt=en-us" target="_blank">Songs for Tsunami Relief Austin to South Asia</a></td>
+        </tr><tr class="" data-source="Csf0apMvvFTQQXbCzvc5TniVVufjpOEtzpP0NwBhDVs" data-date="Mon, 18 Apr 2011 05:04:00 GMT" data-title="Bake for the Quake supports Japan earthquake and tsunami relief">
+            <td>Mon, 18 Apr 2011 05:04:00 GMT</td>
+            <td>Bing search - tsunami relief</td>
+            <td><a href="http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6814cc86ba32436a8bee31f658213461&url=https%3a%2f%2fwww.straight.com%2farticle-387877%2fvancouver%2fbake-quake-supports-japan-earthquake-and-tsunami-relief&c=2360745566266393894&mkt=en-us" target="_blank">Bake for the Quake supports Japan earthquake and tsunami relief</a></td>
+        </tr><tr class="" data-source="Csf0apMvvFTQQXbCzvc5TniVVufjpOEtzpP0NwBhDVs" data-date="Thu, 20 Mar 2025 07:17:00 GMT" data-title="Seattle's housing market crisis unlikely to ease from 'silver tsunami'">
+            <td>Thu, 20 Mar 2025 07:17:00 GMT</td>
+            <td>Bing search - tsunami relief</td>
+            <td><a href="http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6814cc86ba32436a8bee31f658213461&url=https%3a%2f%2fwww.msn.com%2fen-us%2furban-infrastructure%2fhousing-and-urban-development%2fseattle-s-housing-market-crisis-unlikely-to-ease-from-silver-tsunami%2far-AA1vB5D8&c=13779734187383766194&mkt=en-us" target="_blank">Seattle's housing market crisis unlikely to ease from 'silver tsunami'</a></td>
+        </tr><tr class="" data-source="Csf0apMvvFTQQXbCzvc5TniVVufjpOEtzpP0NwBhDVs" data-date="Thu, 24 Apr 2025 17:00:00 GMT" data-title="2004 tsunami – a tragedy that changed the world">
+            <td>Thu, 24 Apr 2025 17:00:00 GMT</td>
+            <td>Bing search - tsunami relief</td>
+            <td><a href="http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6814cc86ba32436a8bee31f658213461&url=https%3a%2f%2fwww.thestar.com.my%2faseanplus%2faseanplus-news%2f2024%2f12%2f24%2f2004-tsunami---a-tragedy-that-changed-the-world&c=1985569008056979181&mkt=en-us" target="_blank">2004 tsunami – a tragedy that changed the world</a></td>
+        </tr><tr class="" data-source="Csf0apMvvFTQQXbCzvc5TniVVufjpOEtzpP0NwBhDVs" data-date="Tue, 18 Jan 2022 16:00:00 GMT" data-title="Tonga tsunami: Pita Taufatofua starts fundraiser for home island crisis relief">
+            <td>Tue, 18 Jan 2022 16:00:00 GMT</td>
+            <td>Bing search - tsunami relief</td>
+            <td><a href="http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6814cc86ba32436a8bee31f658213461&url=https%3a%2f%2fwww.bbc.com%2fnews%2fav%2fworld-asia-60048738&c=6073962367835422671&mkt=en-us" target="_blank">Tonga tsunami: Pita Taufatofua starts fundraiser for home island crisis relief</a></td>
+        </tr>
+</tbody>
+</table>
+</div>
+
+<!-- About Modal -->
+<div id="aboutModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:1000;">
+
+  <div style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); background:white; padding:30px; width:90%; max-width:500px; border-radius:10px; box-shadow:0 6px 20px rgba(0,0,0,0.3); animation: fadeInModal 0.3s ease;">
+    <h2 style="margin-top:0;">About This Site</h2>
+    <p style="margin:15px 0;">This website displays the latest articles from selected RSS feeds. You can filter by source, time, and keyword search. It is automatically updated daily. Made by <a href = "https://github.com/technoid99/my_news_feed" target="_blank">@technoid99</a> with ❤️.</p>
+    <div style="text-align:right;">
+      <button style="padding:8px 16px; background:#007BFF; color:white; border:none; border-radius:5px; cursor:pointer;" onclick="document.getElementById('aboutModal').style.display='none'">Close</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// -- URL Parameters
+function getUrlParams() {
+    const params = new URLSearchParams(window.location.search);
+    return {
+        sources: params.get('sources') ? params.get('sources').split(',') : [],
+        time: params.get('time') || '48h',
+        search: params.get('search') || ''
+    };
+}
+
+function updateUrlParams() {
+    const sources = Array.from(document.querySelectorAll('.sourceFilter:checked')).map(cb => cb.value);
+    const time = document.getElementById('timeFilter').value;
+    const search = document.getElementById('searchBox').value.trim();
+
+    const params = new URLSearchParams();
+    if (sources.length) params.set('sources', sources.join(','));
+    if (time) params.set('time', time);
+    if (search) params.set('search', search);
+
+    const newUrl = window.location.pathname + '?' + params.toString();
+    window.history.replaceState(null, '', newUrl);
+}
+
+function parseBooleanSearch(query) {
+    query = query.trim();
+    if (!query) return () => true;
+
+    let terms = [];
+    let current = '';
+    let inQuotes = false;
+
+    for (let i = 0; i < query.length; i++) {
+        const char = query[i];
+        if (char === '"') {
+            inQuotes = !inQuotes;
+            if (!inQuotes && current.length) {
+                terms.push({ type: 'TERM', value: current.toLowerCase() });
+                current = '';
+            }
+        } else if (!inQuotes && /\s/.test(char)) {
+            if (current.length) {
+                if (current.toUpperCase() === 'AND' || current.toUpperCase() === 'OR') {
+                    terms.push({ type: 'OP', value: current.toUpperCase() });
+                } else {
+                    terms.push({ type: 'TERM', value: current.toLowerCase() });
+                }
+                current = '';
+            }
+        } else {
+            current += char;
+        }
+    }
+    if (current.length) {
+        terms.push({ type: 'TERM', value: current.toLowerCase() });
+    }
+
+    if (!terms.length) return () => true;
+
+    return function(title) {
+        title = title.toLowerCase();
+        let result = null;
+        let op = 'AND';
+        for (const term of terms) {
+            if (term.type === 'OP') {
+                op = term.value;
+            } else {
+                const match = title.includes(term.value);
+                if (result === null) {
+                    result = match;
+                } else if (op === 'AND') {
+                    result = result && match;
+                } else if (op === 'OR') {
+                    result = result || match;
+                }
+            }
+        }
+        return result;
+    };
+}
+
+function applyFilters() {
+    const params = getUrlParams();
+
+    // If no sources provided, read from checked checkboxes
+    if (params.sources.length === 0) {
+        params.sources = Array.from(document.querySelectorAll('.sourceFilter:checked')).map(cb => cb.value);
+    }
+
+    // If no time provided, read from time filter
+    if (!params.time) {
+        params.time = document.getElementById('timeFilter').value;
+    }
+
+    // If no search provided, assume empty
+    if (!params.search) {
+        params.search = '';
+    }
+
+    const sourceSet = new Set(params.sources);
+    const filterTime = params.time;
+    const searchFn = parseBooleanSearch(params.search);
+
+    const now = new Date();
+
+    // If no sources selected, hide all rows immediately
+    if (params.sources.length === 0) {
+        document.querySelectorAll('#newsTable tbody tr').forEach(row => {
+            row.style.display = 'none';
+        });
+        updateArticleCount();
+        return;
+    }
+
+    document.querySelectorAll('#newsTable tbody tr').forEach(row => {
+        const source = row.getAttribute('data-source');
+        const dateStr = row.getAttribute('data-date');
+        const title = row.getAttribute('data-title');
+
+        let show = true;
+
+        if (!sourceSet.has(source)) show = false;
+
+        if (filterTime !== 'all' && dateStr) {
+            const articleDate = new Date(dateStr);
+            let diffHours = (now - articleDate) / (1000 * 60 * 60);
+            if ((filterTime === '24h' && diffHours > 24) ||
+                (filterTime === '48h' && diffHours > 48) ||
+                (filterTime === '7d' && diffHours > 168)) {
+                show = false;
+            }
+        }
+
+        if (!searchFn(title)) show = false;
+
+        row.style.display = show ? '' : 'none';
+    });
+
+    updateArticleCount();
+}
+
+
+
+function updateArticleCount() {
+    const visible = Array.from(document.querySelectorAll('#newsTable tbody tr'))
+        .filter(row => row.style.display !== 'none').length;
+    const total = document.querySelectorAll('#newsTable tbody tr').length;
+    document.getElementById('articleCount').textContent = `Showing ${visible} of ${total} articles`;
+}
+
+function selectAllSources() {
+    document.querySelectorAll('.sourceFilter').forEach(cb => cb.checked = true);
+    updateUrlParams();
+    applyFilters();
+}
+
+function selectNoSources() {
+    document.querySelectorAll('.sourceFilter').forEach(cb => cb.checked = false);
+    updateUrlParams();
+    applyFilters();
+}
+
+function showAbout() {
+    document.getElementById('aboutModal').style.display = 'block';
+}
+
+function sortTable(colIndex) {
+    const tbody = document.querySelector('#newsTable tbody');
+    const rows = Array.from(tbody.rows);
+    let asc = true;
+    rows.sort((a, b) => {
+        let valA = a.cells[colIndex].textContent.trim();
+        let valB = b.cells[colIndex].textContent.trim();
+        return asc ? valA.localeCompare(valB) : valB.localeCompare(valA);
+    });
+    tbody.innerHTML = '';
+    rows.forEach(r => tbody.appendChild(r));
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const params = getUrlParams();
+    if (params.time) document.getElementById('timeFilter').value = params.time;
+    if (params.search) document.getElementById('searchBox').value = params.search;
+    if (params.sources.length) {
+        document.querySelectorAll('.sourceFilter').forEach(cb => {
+            cb.checked = params.sources.includes(cb.value);
+        });
+    }
+    document.querySelectorAll('.sourceFilter').forEach(cb => cb.addEventListener('change', () => {
+        updateUrlParams();
+        applyFilters();
+    }));
+    document.getElementById('timeFilter').addEventListener('change', () => {
+        updateUrlParams();
+        applyFilters();
+    });
+    document.getElementById('searchBox').addEventListener('input', () => {
+        updateUrlParams();
+        applyFilters();
+    });
+    applyFilters();
+});
+</script>
+
+</body>
+</html>
