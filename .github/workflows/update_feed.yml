@@ -49,6 +49,12 @@ jobs:
           mkdir -p public
           cp index.html public/
           cp config.html public/
+      
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+            name: pages-artifact
+            path: ./public
 
   deploy:
     needs: build
@@ -60,12 +66,6 @@ jobs:
     steps:
       - name: Setup Pages
         uses: actions/configure-pages@v5
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-            name: pages-artifact
-            path: ./public
 
       - name: Deploy to GitHub Pages
         id: deployment
