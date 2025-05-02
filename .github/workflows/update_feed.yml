@@ -3,17 +3,21 @@ name: Update News Feed Daily
 on:
   schedule:
     - cron: "0 20 * * *"  # Scheduler: Daily at 6 AM (UTC+10)
-  workflow_dispatch:       # Manual trigger
+  workflow_dispatch:      # Manual trigger
   push:                    
     branches:
       - main
     paths:
-      - 'feeds/*.json'       # Only trigger if json files directly inside /feeds/ is changed, not subfolders or other files
+      - 'feeds/*.json'    # Trigger if json files directly inside /feeds/ is changed, not subfolders or other files
 
 permissions:
   contents: write
   pages: write
   id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 
 jobs:
   build:
@@ -26,32 +30,44 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.x"
+          python-version: "3.11"
 
       - name: Install dependencies
-        run: pip install feedparser
+        run: |
+          echo "Installing dependencies"
+          pip install feedparser
 
       - name: Run feed generator
         working-directory: ./src
-        run: python main.py
+        run: |
+          echo "Running main Python script"
+          python main.py
 
       - name: Prepare site for deployment
         run: |
+          echo "Preparing created site files for deployment"
           mkdir -p public
           cp index.html public/
           cp config.html public/
 
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: pages-artifact
-          path: ./public
-
   deploy:
     needs: build
+    environment: 
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    environment: production
+
     steps:
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+            name: pages-artifact
+            path: ./public
+
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v2
+        uses: actions/deploy-pages@v4
+
