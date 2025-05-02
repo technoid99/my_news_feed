@@ -34,26 +34,25 @@ jobs:
         working-directory: ./src
         run: python main.py
 
-      - name: Commit and push changes if needed
+      - name: Copy public files
         run: |
-          git config user.name 'github-actions'
-          git config user.email 'actions@github.com'
-          git add index.html
-          if git diff --cached --quiet; then
-            echo "No changes to index.html — skipping commit."
-          else
-            git commit -m "🔄 Auto-update news feed"
-            git push
-          fi
-      - name: Prepare publish folder
-        run: |
-          mkdir publish
-          cp index.html publish/
-          cp config.html publish/
+          mkdir -p ./public
+          cp index.html ./public/
+          cp config.html ./public/
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v2
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./publish
-          publish_branch: gh-pages
+          path: ./public
+
+  deploy:
+    needs: update
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
