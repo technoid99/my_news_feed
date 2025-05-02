@@ -12,9 +12,11 @@ on:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 jobs:
-  update:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -27,10 +29,9 @@ jobs:
           python-version: "3.x"
 
       - name: Install dependencies
-        run: |
-          pip install feedparser
+        run: pip install feedparser
 
-      - name: Run personalised news feed python script
+      - name: Run feed generator
         working-directory: ./src
         run: python main.py
 
