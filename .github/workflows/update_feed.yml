@@ -41,9 +41,10 @@ jobs:
           cp index.html public/
           cp config.html public/
 
-      - name: Upload GitHub Pages artifact
-        uses: actions/upload-pages-artifact@v2
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
         with:
+          name: pages-artifact
           path: ./public
 
   deploy:
