@@ -45,10 +45,15 @@ jobs:
             git commit -m "🔄 Auto-update news feed"
             git push
           fi
+      - name: Prepare publish folder
+        run: |
+          mkdir publish
+          cp index.html publish/
+          cp config.html publish/
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./
+          publish_dir: ./publish
           publish_branch: gh-pages
