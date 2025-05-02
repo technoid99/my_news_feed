@@ -8,7 +8,7 @@ This tool is designed for **anyone with a GitHub account**, no programming requi
 Click here to see a sample feed: [My news feed](https://technoid99.github.io/my_news_feed/index.html)
 This is the location of the original Github repository [template](https://github.com/technoid99/my_news_feed/).
 
-This repo is currently under construction. Don't copy it if the following status is not a green 'pass'
+This repo is currently under construction. Don't copy it if the following status is not a green 'passing'
 
 [![Update News Feed Daily](https://github.com/technoid99/my_news_feed/actions/workflows/update_feed.yml/badge.svg?branch=main)](https://github.com/technoid99/my_news_feed/actions/workflows/update_feed.yml)
 
@@ -33,7 +33,7 @@ This repo is currently under construction. Don't copy it if the following status
 |:-----|:-------|
 | 1 | Click **"Use this template"** |
 | 2 | Create your own repository |
-| 3 | Enable **GitHub Pages** (repository Settings > Pages (left menu) > branch: main, root folder > Save button) |
+| 3 | Enable **GitHub Pages** (repository Settings > Pages (left menu) > Source: GitHub Actions) |
 | 4 | Go make yourself a coffee ☕ or tea 🫖
 | 5 | Go do your new news feed webpage `https://yourusername.github.io/your-repository-name/config.html`
 | 6 | Use the Config tool (top right hand corner) to create your `feeds.json` content
@@ -129,12 +129,13 @@ Just GitHub + RSS!
 
 ## ⚙️ How It Works (Under the Hood)
 
-- `main.py` pulls articles from your configured RSS feed sources in `feeds.json` using Python and `feedparser`.
+- `main.py` pulls articles from your configured RSS feed sources in the /feeds folder using Python and `feedparser`.
 - It generates an `index.html` page listing all articles.
 - A GitHub Actions workflow (`update_feed.yml`) runs `main.py` automatically every day.
-- Changes are committed back to your repository if anything new appears.
-- GitHub Pages serves your latest news to the world.
-
+- Instead of committing changes to your repository, the site is built into a /public folder and uploaded as a GitHub Pages artifact.
+- Deployment uses actions/deploy-pages@v4 and actions/upload-pages-artifact@v3, following GitHub’s modern deployment method.
+- GitHub Pages serves your latest news to the world
+  
 ---
 
 ## 💡 Tips
