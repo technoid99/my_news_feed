@@ -2,13 +2,13 @@ name: Update News Feed Daily
 
 on:
   schedule:
-    - cron: "0 20 * * *"  # Daily at 6 AM AEST (UTC+10)
+    - cron: "0 20 * * *"  # Scheduler: Daily at 6 AM (UTC+10)
   workflow_dispatch:       # Manual trigger
-  push:                    # NEW: Trigger on feeds.json change
+  push:                    
     branches:
       - main
     paths:
-      - 'feeds.json'       # Only trigger if this file is changed
+      - 'feeds/*.json'       # Only trigger if json files directly inside /feeds/ is changed, not subfolders or other files
 
 permissions:
   contents: write
@@ -31,8 +31,8 @@ jobs:
           pip install feedparser
 
       - name: Run personalised news feed python script
-        run: |
-          python main.py
+        working-directory: ./src
+        run: python main.py
 
       - name: Commit and push changes if needed
         run: |
