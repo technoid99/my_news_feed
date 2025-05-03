@@ -200,7 +200,7 @@ function updateFeedsDisplay() {
     const entryDiv = document.createElement('div');
     entryDiv.className = "feed-entry";
 
-    let html = `<strong>${feed.source}</strong><br>`;
+    let html = `<strong>${feed.source}</strong>`;
     html += `<a href="${feed.url}" target="_blank">${feed.url}</a><br>`;
 
     const decodedQuery = extractSearchQuery(feed.url);
