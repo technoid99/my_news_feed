@@ -27,6 +27,17 @@ This repo is currently under construction. Don't copy it if the following status
 
 ---
 
+## 🛠 Requirements
+
+- A GitHub account.
+
+No servers.  
+No coding beyond basic file editing.  
+No installations.  
+Just GitHub + RSS!
+
+---
+
 # ✅ Quick Setup Instructions:
 
 | Step | Action |
@@ -35,12 +46,12 @@ This repo is currently under construction. Don't copy it if the following status
 | 2 | Create your own repository |
 | 3 | Enable **GitHub Pages** (repository Settings > Pages (left menu) > Source: GitHub Actions) |
 | 4 | Go make yourself a coffee ☕ or tea 🫖
-| 5 | Go do your new news feed webpage `https://yourusername.github.io/your-repository-name/config.html`
-| 6 | Use the Config tool (top right hand corner) to create your `feeds.json` content
-| 7 | Paste the content into your `feeds.json` file. (Click < > Code in the top left corner to get back to your repository file system)
-| 8 | Refresh the website by manually launching your `Update News Feed Daily` workflow (Actions > Update News Feed Daily > Run Workflow > Run Workflow)
-| 9 | Enjoy your personal news feed!  🚀 |
-| 10 | Drink your beverage ☕ 🫖
+| 5 | Go to your new news feed webpage `https://yourusername.github.io/your-repository-name/config.html`
+| 6 | Use the Config tool (top right hand corner) to customise your RSS feed sources content
+| 7 | Paste the content into your `feeds.json` or relevant file. (Click < > Code in the top left corner to get back to your repository file system)
+| 8 | Once you modify a json file in the feeds/ directory, it will automatically update the website. Within 1-2 minutes.
+| 9 | Drink your beverage ☕ 🫖
+| 10 | Enjoy your personal news feed!  🚀 
 
 ---
 
@@ -60,10 +71,9 @@ This repo is currently under construction. Don't copy it if the following status
 ### 2. Enable GitHub Pages
 
 - In your new repository, go to **Settings**.
-- Scroll down to **Pages**.
-- Under **"Source"**, select:
-  - **Branch:** `main`
-  - **Folder:** `/ (root)`
+- Click **Pages**. (left menu)
+- Under **"Build and deployment Source"**, select:
+  - **Github Actions**
 - Click **Save**.
 
 ✅ After a few seconds, GitHub will give you a live web link to your personal news feed!
@@ -79,7 +89,7 @@ This repo is currently under construction. Don't copy it if the following status
 - Then:
   - Go to your Gitub repository
   - Click <>Code to get back to your file system
-  - Click `feeds.json` in your repository file listing
+  - Click `feeds.json` or the corresponding json file you were editing in your repository file listing
   - Click the ✏️ **edit button**.
   - Delete all content in that file
   - Paste your updated feeds.json
@@ -87,12 +97,31 @@ This repo is currently under construction. Don't copy it if the following status
 
 ✅ Now you control exactly what news you see!
 
+---
+
 💡 Looking for RSS sources?
 * use advance search keyword `feeds:` in Bing Search [example](https://www.bing.com/search?q=feed%3A+%22technology), or Yahoo or DuckDuckGo
 * [Google News](https://news.google.com). Run your search then in the URL add `rss/` after the google.com. Use that URL as your RSS source URL.
 * run a basic Google search for 'RSS news feeds'
 * Create your own through [RSSEverything](https://rsseverything.com), [PolitePol](https://politepol.com)
 
+## 💡 Tips for Google News
+
+### Add a Google News search as an RSS feed
+
+1. Create a bookmarklet
+a. Copy this javascript code that obtains the exact search query and makes it an RSS feed ```javascript:(function(){let url=window.location.href;if(url.includes('news.google.com/')){url=url.replace('news.google.com/','news.google.com/rss/');navigator.clipboard.writeText(url).then(()=>alert('RSS URL copied to clipboard!')).catch(err=>console.error('Copy failed',err));}else{alert('Not a Google News page.');}})();```
+b. Create a new bookmark in your browser. (I like to save it to Bookmarks bar for easy access)
+c. Paste it into the URL field of the bookmark.
+d. Name it something like "Get Google News RSS".
+
+2. Manually search using Google News
+a. Go to [https://news.google.com/](https://news.google.com/)
+b. Run your news search query or click on a Topic heading.
+c. While on your resulting Google News search page, click the bookmarklet. It will copy the RSS feed URL to your clipboard.
+
+3. Go to your my_news_feed Config file or use [this one](https://technoid99.github.io/my_news_feed/config.html) from the template and use the copied URL as your RSS URL.
+   
 ---
 
 ### 4. How Updates Work
@@ -114,16 +143,8 @@ This repo is currently under construction. Don't copy it if the following status
 - Time range (24h, 48h, 7d, or all time)
 - Keyword search (supports **AND**, **OR**, and **"quoted phrases"**) eg. (grapes OR berries) AND apples -bananas
 
----
-
-## 🛠 Requirements
-
-- A GitHub account.
-
-No servers.  
-No coding beyond basic file editing.  
-No installations.  
-Just GitHub + RSS!
+💡 Tips
+- Bookmark your feed with customised filters (source selection, keywords, time range) — they are saved in the URL!
 
 ---
 
@@ -136,31 +157,6 @@ Just GitHub + RSS!
 - Deployment uses actions/deploy-pages@v4 and actions/upload-pages-artifact@v3, following GitHub’s modern deployment method.
 - GitHub Pages serves your latest news to the world
   
----
-
-## 💡 Tips
-
-- Bookmark your feed with customised filters (source selection, keywords, time range) — they are saved in the URL!
-- Remove or add feeds anytime by editing `feeds.json` and then running the workflow in the Actions section (or wait 24 hours for the scheduler to activate)
-
----
-
-## 💡 Advanced Tips
-
-### Add a Google News search as an RSS feed
-
-1. Create a bookmarklet
-a. Copy this javascript code that obtains the exact search query and makes it an RSS feed ```javascript:(function(){let url=window.location.href;if(url.includes('news.google.com/')){url=url.replace('news.google.com/','news.google.com/rss/');navigator.clipboard.writeText(url).then(()=>alert('RSS URL copied to clipboard!')).catch(err=>console.error('Copy failed',err));}else{alert('Not a Google News page.');}})();```
-b. Create a new bookmark in your browser. (I like to save it to Bookmarks bar for easy access)
-c. Paste it into the URL field of the bookmark.
-d. Name it something like "Get Google News RSS".
-
-2. Manually search using Google News
-a. Go to [https://news.google.com/](https://news.google.com/)
-b. Run your news search query or click on a Topic heading.
-c. While on your resulting Google News search page, click the bookmarklet. It will copy the RSS feed URL to your clipboard.
-
-3. Go to your my_news_feed Config file or use [this one](https://technoid99.github.io/my_news_feed/config.html) from the template and use the copied URL as your RSS URL.
 ---
 
 ## Troubleshooting
