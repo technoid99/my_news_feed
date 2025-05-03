@@ -1,6 +1,7 @@
 # html_builder.py
 
 from datetime import datetime
+from email.utils import parsedate_to_datetime
 
 def build_index_html(articles, feeds):
     now_utc = datetime.utcnow().strftime("%d %b %Y, %H:%M UTC")
@@ -13,7 +14,11 @@ def build_index_html(articles, feeds):
     # Prepare initial table rows
     rows_html = ""
     for article in articles:
-        date_display = article["date"] if article["date"] else ""
+        try:
+            article_date = parsedate_to_datetime(article["date"])
+            date_display = article_date.strftime("%a, %d %b %Y")  # e.g. "Fri, 02 May 2025"
+        except Exception:
+            date_display = article["date"] if article["date"] else ""
         row_class = "missing-date" if not article["date"] else ""
         rows_html += f"""<tr class="{row_class}" data-source="{article['source_id']}" data-date="{article['date']}" data-title="{article['title']}">
             <td>{date_display}</td>
