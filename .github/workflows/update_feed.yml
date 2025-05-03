@@ -46,10 +46,11 @@ jobs:
       - name: Prepare site for deployment
         run: |
           echo "Preparing created site files for deployment"
-          mkdir -p public
+          mkdir -p public/feeds
           cp index.html public/
           cp config.html public/
-          cp feeds/*.json public
+          cp feeds/*.json public/feeds/
+          cp feeds/index.txt public/feeds/
       
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

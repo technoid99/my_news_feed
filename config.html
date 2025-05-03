@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Manage Feeds.json</title>
+  <title>Manage feeds source .json files</title>
   <style>
     body { font-family: Arial, sans-serif; margin: 40px; }
     input, textarea, button { width: 100%; padding: 8px; margin: 8px 0; }
@@ -16,8 +16,12 @@
   </style>
 </head>
 <body>
-  <h1>Configure News Sources (feeds.json)</h1>
+  <h1>Configure RSS Source: (<span id="fileLabel">feeds.json</span>)</h1>
 
+  <label for="fileSelect">Choose a feed file:</label>
+  <select id="fileSelect"></select>
+  <button onclick="handleFileChange()">Open</button>
+  
   <h2><u>Add RSS Feed</u></h2>
 
   <label for="source">Source Name:</label>
@@ -32,11 +36,11 @@
   <h2><u>Current Feeds:</u></h2>
   <div id="feedsList"></div>
 
-  <h2><u>feeds.json (Editable View):</u></h2>
+  <h2><u><span id="fileLabel2">feeds.json</span> (Editable View):</u></h2>
   <textarea id="feedsText" rows="20" style="font-family: monospace;"></textarea>
 
   <button onclick="copyJsonToClipboard()">Copy JSON to Clipboard</button>
-  <p>⚙️ After copying, edit <code>feeds.json</code> manually through GitHub and replace its contents with your updated version.</p>
+  <p>⚙️ After copying, edit <code id="fileCodeLabel">feeds.json</code> manually through GitHub and replace its contents with your updated version.</p>
 
 <script>
 let feeds = [];
@@ -53,20 +57,37 @@ async function generateUniqueId(url) {
   return base64String;
 }
 
-async function loadFeeds() {
+let currentFile = "feeds/feeds.json";
+
+async function loadFeeds(filePath) {
+  currentFile = filePath;
   try {
-    const response = await fetch('./feeds.json');
+    const response = await fetch(filePath);
     if (!response.ok) throw new Error(`HTTP error ${response.status}`);
     feeds = await response.json();
     updateFeedsDisplay();
     updateFeedsText();
+    updateFileLabels();
   } catch (error) {
-    alert("Failed to load feeds.json. Make sure it's available and the URL is correct.\n" + error);
+    alert(`Failed to load ${filePath}. Make sure it's available.\n` + error);
     feeds = [];
     updateFeedsDisplay();
     updateFeedsText();
   }
 }
+
+function handleFileChange() {
+  const selected = document.getElementById("fileSelect").value;
+  loadFeeds(selected);
+}
+
+function updateFileLabels() {
+  const filename = currentFile.split("/").pop();
+  document.getElementById("fileLabel").textContent = filename;
+  document.getElementById("fileLabel2").textContent = filename;
+  document.getElementById("fileCodeLabel").textContent = filename;
+}
+
 
 function extractSearchQuery(url) {
   const queryStart = url.indexOf("?q=");
@@ -143,11 +164,32 @@ function deleteFeed(index) {
 function copyJsonToClipboard() {
   const text = document.getElementById('feedsText').value;
   navigator.clipboard.writeText(text)
-    .then(() => alert("Copied! Now go to GitHub, open and edit your feeds.json file, delete the old contents, and paste the new version you just copied."))
+    .then(() => alert(`Copied! Now go to GitHub, open and edit your ${currentFile.split("/").pop()} file, delete the old contents, and paste the new version you just copied.`))
     .catch(err => alert("Failed to copy: " + err));
 }
 
-document.addEventListener('DOMContentLoaded', loadFeeds);
+async function populateFileList() {
+  const select = document.getElementById("fileSelect");
+  try {
+    const response = await fetch("feeds/index.txt");
+    const text = await response.text();
+    const fileList = text.split("\n").filter(Boolean);
+    select.innerHTML = "";
+    fileList.forEach(file => {
+      const option = document.createElement("option");
+      option.value = file;
+      option.textContent = file.split("/").pop();
+      select.appendChild(option);
+    });
+    if (fileList.length > 0) {
+      loadFeeds(fileList[0]);
+    }
+  } catch (err) {
+    alert("Could not load feed index. Check feeds/index.txt exists.");
+  }
+}
+
+document.addEventListener("DOMContentLoaded", populateFileList);
 </script>
 
 </body>
