@@ -4,46 +4,139 @@
   <meta charset="UTF-8">
   <title>Manage feeds source .json files</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 40px; }
-    input, textarea, button { width: 100%; padding: 8px; margin: 8px 0; }
-    label { font-weight: bold; margin-top: 16px; display: block; }
-    .feed-entry { border: 1px solid #ddd; padding: 10px; margin-bottom: 10px; border-radius: 5px; }
-    .feed-entry strong { font-size: 1.1em; }
-    .feed-entry small { color: gray; display: block; margin-top: 4px; }
-    .feed-entry button { margin-top: 6px; background-color: #f44336; color: white; border: none; padding: 6px 12px; border-radius: 3px; cursor: pointer; }
-    .feed-entry button:hover { background-color: #d32f2f; }
-    pre { white-space: pre-wrap; background: #f4f4f4; padding: 10px; }
+    body {
+      font-family: "Segoe UI", Roboto, Arial, sans-serif;
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 0 20px;
+      line-height: 1.6;
+    }
+
+    h1, h2 {
+      margin-bottom: 12px;
+    }
+
+    label {
+      font-weight: 600;
+      display: block;
+      margin: 12px 0 6px;
+    }
+
+    input[type="text"], select, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 12px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    textarea {
+      font-family: monospace;
+      resize: vertical;
+    }
+
+    button {
+      background-color: #1976d2;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      font-size: 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #1565c0;
+    }
+
+    .feed-entry {
+      border: 1px solid #eee;
+      background: #fafafa;
+      padding: 12px;
+      margin-bottom: 12px;
+      border-radius: 4px;
+    }
+
+    .feed-entry strong {
+      font-size: 1.1em;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .feed-entry a {
+      color: #1976d2;
+      word-break: break-word;
+    }
+
+    .feed-entry small {
+      color: #666;
+      display: block;
+      margin-top: 4px;
+    }
+
+    .feed-entry button {
+      background-color: #e53935;
+      margin-top: 8px;
+    }
+
+    .feed-entry button:hover {
+      background-color: #c62828;
+    }
+
+    .row {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .hint {
+      font-size: 0.9em;
+      color: #555;
+    }
+
+    code {
+      background: #f0f0f0;
+      padding: 2px 6px;
+      border-radius: 3px;
+    }
   </style>
 </head>
 <body>
-  <h1>Configure RSS Source: (<span id="fileLabel">feeds.json</span>)</h1>
+  <h1>Configure RSS Source: <code id="fileLabel">feeds.json</code></h1>
 
-  <label for="fileSelect">Choose a feed file:</label>
-  <select id="fileSelect"></select>
-  <button onclick="handleFileChange()">Open</button>
-  
-  <h2><u>Add RSS Feed</u></h2>
+  <div class="row">
+    <label for="fileSelect">Choose a feed file:</label>
+    <select id="fileSelect"></select>
+    <button onclick="handleFileChange()">Open</button>
+  </div>
+
+  <h2>Add RSS Feed</h2>
 
   <label for="source">Source Name:</label>
-  <small><i>This is what you'll see in the Sources select box</i></small>
+  <small class="hint">This is what you'll see in the Sources dropdown</small>
   <input id="source" type="text" placeholder="e.g. Google News - Tech" />
 
   <label for="url">RSS Feed URL:</label>
   <input id="url" type="text" placeholder="Paste the RSS feed URL here" />
 
-  <button onclick="addFeed()">Add New Feed (Prepends)</button>
+  <button onclick="addFeed()">Add New Feed</button>
 
-  <h2><u>Current Feeds:</u></h2>
+  <h2>Current Feeds</h2>
   <div id="feedsList"></div>
 
-  <h2><u><span id="fileLabel2">feeds.json</span> (Editable View):</u></h2>
-  <textarea id="feedsText" rows="20" style="font-family: monospace;"></textarea>
+  <h2>Raw JSON: <code id="fileLabel2">feeds.json</code></h2>
+  <textarea id="feedsText" rows="20"></textarea>
 
   <button onclick="copyJsonToClipboard()">Copy JSON to Clipboard</button>
-  <p>⚙️ After copying, edit <code id="fileCodeLabel">feeds.json</code> manually through GitHub and replace its contents with your updated version.</p>
+  <p class="hint">⚙️ After copying, edit <code id="fileCodeLabel">feeds.json</code> manually through GitHub and replace its contents with the new version.</p>
 
 <script>
 let feeds = [];
+let currentFile = "feeds/feeds.json";
 
 async function generateUniqueId(url) {
   const encoder = new TextEncoder();
@@ -57,8 +150,6 @@ async function generateUniqueId(url) {
   return base64String;
 }
 
-let currentFile = "feeds/feeds.json";
-
 async function loadFeeds(filePath) {
   currentFile = filePath;
   try {
@@ -69,7 +160,7 @@ async function loadFeeds(filePath) {
     updateFeedsText();
     updateFileLabels();
   } catch (error) {
-    alert(`Failed to load ${filePath}. Make sure it's available.\n` + error);
+    alert(`Failed to load ${filePath}.\n` + error);
     feeds = [];
     updateFeedsDisplay();
     updateFeedsText();
@@ -87,7 +178,6 @@ function updateFileLabels() {
   document.getElementById("fileLabel2").textContent = filename;
   document.getElementById("fileCodeLabel").textContent = filename;
 }
-
 
 function extractSearchQuery(url) {
   const queryStart = url.indexOf("?q=");
@@ -145,7 +235,7 @@ async function addFeed() {
     uniqueid: uniqueid
   };
 
-  feeds.unshift(newFeed); // Prepend
+  feeds.unshift(newFeed);
   updateFeedsDisplay();
   updateFeedsText();
 
@@ -191,6 +281,5 @@ async function populateFileList() {
 
 document.addEventListener("DOMContentLoaded", populateFileList);
 </script>
-
 </body>
 </html>
