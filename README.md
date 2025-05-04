@@ -160,8 +160,8 @@ The config tool (`config.html`) helps you generate valid content for each one.
 
 ## 📚 Need Help?
 
-- Open an [Issue](https://github.com/technoid99/my_news_feed/issues)
 - Explore the [Wiki](https://github.com/technoid99/my_news_feed/wiki)
+- Open an [Issue](https://github.com/technoid99/my_news_feed/issues)
 
 ---
 
