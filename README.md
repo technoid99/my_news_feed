@@ -82,6 +82,8 @@ No installs. No backend. Just GitHub + a web browser.
 | 7 | Site updates automatically in 1–2 mins |
 | 8 | Bookmark your filtered feed URL for reuse |
 
+The [Detailed Setup Guide](https://github.com/technoid99/my_news_feed/wiki/Detailed-Setup-Guide) is located in the wiki.
+
 ---
 
 ## 📂 You Can Use Multiple Feed Files
