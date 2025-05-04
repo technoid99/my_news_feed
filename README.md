@@ -6,13 +6,13 @@ Create your own daily news reader from any public RSS feeds — no coding or ser
 
 ## TL;DR
 
-- 🧰 Use this template repository (click "Use this template" on GitHub)
-- ⚙️ Set up GitHub Pages (go to Settings > Pages > Source: GitHub Actions)
-- ✅ Pick your sources  
-- 🛠 Paste them into a config file  
-- 🌐 GitHub Pages builds your feed  
-- 🔁 Feed updates daily via GitHub Actions  
-- 📱 Works on mobile  
+- 📰 Build your own personal news reader using any public RSS feeds
+- 🧰 Use this template to create your own copy of the project
+- ⚙️ Enable GitHub Pages to publish your feed as a static website
+- ✅ Pick your sources and paste them into the config form
+- 🛠 Save the generated JSON to feeds/feeds.json in your repo
+- 🔁 Feed updates daily via GitHub Actions — no coding needed
+- 📱 Mobile-friendly and runs entirely on GitHub
 
 See it in action: [News Feed Demo](https://technoid99.github.io/my_news_feed/index.html) 
 [![](https://github.com/technoid99/my_news_feed/actions/workflows/update_feed.yml/badge.svg?branch=main)](https://technoid99.github.io/my_news_feed/index.html)
