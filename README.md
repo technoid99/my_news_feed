@@ -6,6 +6,8 @@ Create your own daily news reader from any public RSS feeds — no coding or ser
 
 ## TL;DR
 
+- 🧰 Use this template repository (click "Use this template" on GitHub)
+- ⚙️ Set up GitHub Pages (go to Settings > Pages > Source: GitHub Actions)
 - ✅ Pick your sources  
 - 🛠 Paste them into a config file  
 - 🌐 GitHub Pages builds your feed  
