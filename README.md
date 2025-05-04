@@ -73,14 +73,13 @@ No installs. No backend. Just GitHub + a web browser.
 
 | Step | Action |
 |------|--------|
-| 1 | Click **"Use this template"** in GitHub (top right of this page) |
-| 2 | Create your own repository (repo) |
-| 3 | Enable **GitHub Pages** (Settings > Pages > Source: GitHub Actions) |
-| 4 | Visit your feed: `https://yourusername.github.io/your-repo-name/config.html` |
-| 5 | Use the Config form to build your feed list |
-| 6 | Paste the JSON into your file (e.g. `feeds/feeds.json`) |
-| 7 | Site updates automatically in 1–2 mins |
-| 8 | Bookmark your filtered feed URL for reuse |
+| 🧪 1 | Click **"Use this template"** (top right of this page) to create your own copy of this repo |
+| ⚙️ 2 | Name your repository and enable GitHub Pages (Settings → Pages → GitHub Actions) |
+| 🗂 3 | Visit `https://yourusername.github.io/your-repo-name/config.html` and use the Config form |
+| 📝 4 | Paste the JSON into `feeds/feeds.json` and commit changes |
+| 🔄 5 | Site updates automatically within 1–2 minutes |
+| 🌐 6 | Visit your personal feed and apply filters |
+| 🔖 7 | Bookmark the URL — filters are saved in the link |
 
 The [Detailed Setup Guide](https://github.com/technoid99/my_news_feed/wiki/Detailed-Setup-Guide) is located in the wiki.
 
