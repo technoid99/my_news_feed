@@ -113,7 +113,7 @@ The config tool (`config.html`) helps you generate valid content for each one.
 
 ---
 
-## 💡 Advanced Tips (Moved to Wiki)
+## 💡 Advanced Tips
 
 - [Finding RSS feeds using Google or Bing](https://github.com/technoid99/my_news_feed/wiki/Finding-RSS-Feeds)
 - [How to convert Google News searches into RSS](https://github.com/technoid99/my_news_feed/wiki/Google-News-RSS-Bookmarklet)
