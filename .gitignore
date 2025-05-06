@@ -37,6 +37,5 @@ Desktop.ini
 .eggs/
 build/
 dist/
-config1.html
-archive_files/config-original.html
+archive_files/
 feeds/index.txt
