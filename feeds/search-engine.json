@@ -1,5 +1,10 @@
 [
   {
+    "source": "Baidu - Technology",
+    "url": "https://news.baidu.com/n?cmd=4&class=technnews&tn=rss",
+    "uniqueid": "N20vEXqMa0ZEpT3hnsYWoAmof6Mxe4Oj5KPaddj-D_M"
+  },
+  {
     "source": "Bing search - soccer",
     "url": "https://www.bing.com/news/search?q=soccer+news&qft=sortbydate%3d%221%22&form=YFNR&format=rss",
     "uniqueid": "ygfvW4bWzcEdASOBl0hXR7-b-6NHHKxm0vcqttJpN9s"
