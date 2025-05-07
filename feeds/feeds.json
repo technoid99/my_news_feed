@@ -1,8 +1,8 @@
 [
   {
-    "source": "Google News - huawei indonesia",
-    "url": "https://news.google.com/rss/search?q=huawei%20AND%20indonesia&hl=en-AU&gl=AU&ceid=AU%3Aen",
-    "uniqueid": "Qfv95MsKfhFwPe8WZi0-oLYLZdQJZIBrd3Pz-67ep4E"
+    "source": "Reddit - Soccer",
+    "url": "https://www.reddit.com/r/soccer/.rss",
+    "uniqueid": "C5NefpyOSONFKj4IEI8ojrH_dEf8wX0vOZciPSYaWww"
   },
   {
     "source": "News - Sydney Morning Herald",
@@ -13,5 +13,10 @@
     "source": "UNIDIR Publications",
     "url": "https://unidir.org/publication/feed/",
     "uniqueid": "GlkmklyUJk2YPL8eWi1as_9LX2YRmE4Iqn_xWRMEupE"
+  },
+  {
+    "source": "Baidu - Technology",
+    "url": "https://news.baidu.com/n?cmd=4&class=technnews&tn=rss",
+    "uniqueid": "N20vEXqMa0ZEpT3hnsYWoAmof6Mxe4Oj5KPaddj-D_M"
   }
 ]
