@@ -1,3 +1,2 @@
-feeds/custom-rss.json
 feeds/feeds.json
 feeds/search-engine.json
