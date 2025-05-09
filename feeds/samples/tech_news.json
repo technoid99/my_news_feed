@@ -1,0 +1,122 @@
+[
+  {
+    "source": "Bloomberg - Technology",
+    "url": "https://feeds.bloomberg.com/technology/news.rss",
+    "uniqueid": "64w8Tvr2ScJM_yAcmaBjUdNbPRhdoM1ddhwTNN7-kc8"
+  },
+  {
+    "source": "TechCrunch - AI News & Artificial Intelligence",
+    "url": "https://techcrunch.com/category/artificial-intelligence/feed/",
+    "uniqueid": "DpdwJwVW-j-weVPuOxEwpPp9fko08Oo8Xpfa8r_7l2s"
+  },
+  {
+    "source": "Sydney Morning Herald - Technology",
+    "url": "https://www.smh.com.au/rss/technology.xml",
+    "uniqueid": "BcfET36zrLZ2H10ybEunFq3WIPgzcmjovbcIqxQqsKg"
+  },
+  {
+    "source": "The Age - Technology",
+    "url": "https://www.theage.com.au/rss/technology.xml",
+    "uniqueid": "9ZL6CzLdvqf3S04BbHckwcmSGIykM91RJQ46ZW6qKvc"
+  },
+  {
+    "source": "BleepingComputer",
+    "url": "https://www.bleepingcomputer.com/feed/",
+    "uniqueid": "lnavrtGnMysIJnDEAGdXyG6NrAiwyEhD4IeGeQsuSQo"
+  },
+  {
+    "source": "Google News - Computing",
+    "url": "https://news.google.com/rss/topics/CAAqKggKIiRDQkFTRlFvSUwyMHZNRGRqTVhZU0JXVnVMVWRDR2dKQlZTZ0FQAQ/sections/CAQiSkNCQVNNUW9JTDIwdk1EZGpNWFlTQldWdUxVZENHZ0pCVlNJT0NBUWFDZ29JTDIwdk1ERnNjSE1xQ2hJSUwyMHZNREZzY0hNb0FBKi4IACoqCAoiJENCQVNGUW9JTDIwdk1EZGpNWFlTQldWdUxVZENHZ0pCVlNnQVABUAE",
+    "uniqueid": "DLBJA-iq74NnElMsRePHDJX7B5KTozk0wZTgb3PG7gw"
+  },
+  {
+    "source": "Google News - AI - China",
+    "url": "https://news.google.com/rss/topics/CAAqKggKIiRDQkFTRlFvSUwyMHZNRGRqTVhZU0JXVnVMVWRDR2dKQlZTZ0FQAQ/sections/CAQiR0NCQVNMd29JTDIwdk1EZGpNWFlTQldWdUxVZENHZ0pCVlNJTkNBUWFDUW9ITDIwdk1HMXJlaW9KRWdjdmJTOHdiV3Q2S0FBKi4IACoqCAoiJENCQVNGUW9JTDIwdk1EZGpNWFlTQldWdUxVZENHZ0pCVlNnQVABUAE?gl=CN",
+    "uniqueid": "-0eEXTK1Xb_s1mxrv9YYDQUBua_UJbTkK6Orji9xPso"
+  },
+  {
+    "source": "The Hill - Tech Policy",
+    "url": "https://thehill.com/policy/technology/feed/",
+    "uniqueid": "ko0VcxBVuoKeGFZ90sgrTvAb65mCK0tfZrvQoB5Wbpw"
+  },
+  {
+    "source": "GovTech Review (AU)",
+    "url": "https://www.govtechreview.com.au/feed.rss",
+    "uniqueid": "6WRv_jPDCmTBXZJu1zgg9-oI6Z1N8GlJGhGpfnM7jhI"
+  },
+  {
+    "source": "Politico - Morning Tech",
+    "url": "http://rss.politico.com/morningtech.xml",
+    "uniqueid": "F2BehmPlHAXdgBYjAFivxbOXXLoQ7g34CI5P6V-QdPo"
+  },
+  {
+    "source": "Politico - Morning Cybersecurity",
+    "url": "http://rss.politico.com/morningcybersecurity.xml",
+    "uniqueid": "M1a_n-ZJHRtnloB9SshL8u3_2YbAHMt1ExYfB2p-l0Q"
+  },
+  {
+    "source": "Gizmodo",
+    "url": "https://gizmodo.com/feed/",
+    "uniqueid": "GLUrvoaKLhLvs2IA5xBM96Tb58kq4mjxBROmckLEb_g"
+  },
+  {
+    "source": "Ars Technica - Tech Policy",
+    "url": "https://feeds.arstechnica.com/arstechnica/tech-policy",
+    "uniqueid": "4nFsi712mdpxCul8oCEFSXcIRrSG2FinbIjKoutxIug"
+  },
+  {
+    "source": "Ars Technica - Biz and IT",
+    "url": "https://feeds.arstechnica.com/arstechnica/technology-lab",
+    "uniqueid": "lIqzPCSUMaO2f1vjhY4SotOoIJlSa_7McEdnLmqk840"
+  },
+  {
+    "source": "The Verge",
+    "url": "https://www.theverge.com/rss/index.xml",
+    "uniqueid": "jD2dXXe7OoMHu4Dpx0vCf0qsk0fV2ZuSxQecbPnliOc"
+  },
+  {
+    "source": "The Hacker News",
+    "url": "https://feeds.feedburner.com/TheHackersNews",
+    "uniqueid": "Y2AyyRoLTJqXhMLBcLPDiKGB9gvqna7U8U8MuP0biJg"
+  },
+  {
+    "source": "New York Times - Technology",
+    "url": "https://www.nytimes.com/svc/collections/v1/publish/http://www.nytimes.com/section/technology/rss.xml",
+    "uniqueid": "DqsMKBarjBFmfoBF64WlYGK1b_x2eYF-c1Jebgji5xo"
+  },
+  {
+    "source": "Reddit - Technology",
+    "url": "https://www.reddit.com/r/technology/.rss",
+    "uniqueid": "kvLT3NGUYcTYln7RxDDV75baQaiCJifg6EOMtfMujAk"
+  },
+  {
+    "source": "Reddit - Futurology",
+    "url": "https://www.reddit.com/r/Futurology/.rss",
+    "uniqueid": "sX82TIW7ZnEMecd7c8Jogmp0YnYIzxEsmDT7AawJyec"
+  },
+  {
+    "source": "ITWire",
+    "url": "https://itwire.com/itwire-rss/itwire.feed",
+    "uniqueid": "eCfzM0e6VC2FbWSvrdsuyriMAzAK5jSTAWFjdVZ-66Q"
+  },
+  {
+    "source": "ITNews (Australia)",
+    "url": "https://www.itnews.com.au/RSS/rss.ashx",
+    "uniqueid": "8vYN7ghSG3zmKrdz9h3epErhDeYYL8Mt-hl1Dor9-bo"
+  },
+  {
+    "source": "The West Australian - Technology",
+    "url": "https://thewest.com.au/technology/rss",
+    "uniqueid": "KrzREVC8NzBjnX1S8Zyntzj545ZVh9x2hC0Y8flUa0w"
+  },
+  {
+    "source": "SCMP - Science & Research",
+    "url": "https://www.scmp.com/rss/318224/feed",
+    "uniqueid": "C_9VIKoccySp3i7CPiADZvmiSsbDzOU32CyfmPpjfII"
+  },
+  {
+    "source": "CGTN - Tech & Sci",
+    "url": "https://www.cgtn.com/subscribe/rss/section/tech-sci.xml",
+    "uniqueid": "HNTphIHOXc4-IlPatMmou1qqcLRtnNhxIAMBM6NVG9E"
+  }
+]
